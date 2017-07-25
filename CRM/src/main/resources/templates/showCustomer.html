@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>CRM Customer Page</title>
+	
+	<meta name="viewport" content="width=device-width initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+	<!-- Html -->
+	<link href="../../resources/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+	<!-- Thymeleaf -->
+	<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div id="headwrapper">
+		<div th:replace="fragments/header :: header"></div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-5 col-md-4">
+				<div class="contentbox" id="main">
+
+					<h2 id="h2">Kundendaten</h2>
+		
+					<table class="table table-condensed movieList">
+<!-- 						<tr> <td th:text="${customer.customerId}">Id</td> </tr> -->
+						<tr> <td th:text="${customer.name}">Name</td> </tr>
+						<tr> <td th:text="${customer.street}">Strasse</td> </tr>
+						<tr> <td th:text="${customer.city}">Ort</td> </tr>
+					</table>
+				</div>
+			</div>
+		
+			<div class="col-sm-7 col-md-8">
+				<div class="contentbox" id="login">
+					
+					<h2 id="h2">Memos</h2>
+					
+					<table class="table table-condensed">
+						<tr  th:each="memo : ${customer.memos}">
+							<td th:text="${#dates.format(memo.coverageDate, 'dd.MM yyyy HH:mm')}">5.11.1960 13:10</td>
+							<td th:text="${memo.note}">This is not a love song</td>
+						</tr>
+					</table>
+					
+					<div id="logout"> </div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12">
+				<div th:replace="fragments/footer :: footer"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>

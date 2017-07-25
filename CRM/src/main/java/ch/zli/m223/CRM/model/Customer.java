@@ -17,6 +17,6 @@ public interface Customer {
 	/** @return the customers location */
 	String getCity();
 	
-	/** @return a list of memos */
+	/** @return a list of memos sorted by time, descending */
 	List<Memo> getMemos();
 }

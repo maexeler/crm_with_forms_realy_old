@@ -1,0 +1,23 @@
+package ch.zli.m223.CRM.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ch.zli.m223.CRM.model.Customer;
+import ch.zli.m223.CRM.model.impl.CustomerImpl;
+
+/** The Customer repository */
+public interface CustomerRepository extends JpaRepository<CustomerImpl, Long> {
+
+	/**
+	 * Create a new Customer object
+	 * @param name the customers name
+	 * @param street the customers street
+	 * @param city the customers city
+	 * @return a new Customer object
+	 */
+	default Customer create(String name, String street, String city) {
+		CustomerImpl customer = new CustomerImpl(name, street, city);
+		save(customer);
+		return customer;
+	}
+}
