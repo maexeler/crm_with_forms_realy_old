@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>0</y>
+      <w>250</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Customer
+--
++ getCustomerId(): Long
++ getName(): String
++ getStreet(): String
++ getCity(): String
++ getMemos(): List&lt;Memo&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>0</y>
+      <w>270</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Memo
+--
++ getCoverageDate(): Date
++ getNote(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>240</y>
+      <w>470</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>CustomerImpl
+--
+- customerId: Long
+- name: String
+- street: String
+- city: String
+- memos: List&lt;Memo&gt;
+--
++ CustomerImpl(name: String, street: String) city: String
+...
++ addMemo(memo: Memo)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>150</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>320</y>
+      <w>270</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>MemoImpl
+--
+- coverageDate: Date
+- note: String
+--
++ MemoImpl(memoText: String)
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>820</x>
+      <y>150</y>
+      <w>30</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>330</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+owns
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;30.0;130.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>510</y>
+      <w>570</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+CustomerService
+--
++ getCustomerList(): List&lt;Customer&gt;
++ getCustomer(customerId: long)
++ addCustomer(name: String, steet: String, city: String): Customer
++ addMemoToCustomer(customerId: long, memoText: String): Memo</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
