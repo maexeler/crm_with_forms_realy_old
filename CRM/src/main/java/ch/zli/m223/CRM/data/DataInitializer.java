@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.role.CrmRoles;
-import ch.zli.m223.CRM.security.service.UserService;
 import ch.zli.m223.CRM.security.util.FakeUser;
 import ch.zli.m223.CRM.service.CustomerService;
+import ch.zli.m223.CRM.service.UserService;
 
 /**
  * Fills the data store with some data at server startup

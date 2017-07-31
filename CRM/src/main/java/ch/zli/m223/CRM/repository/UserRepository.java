@@ -1,4 +1,4 @@
-package ch.zli.m223.CRM.security.repository;
+package ch.zli.m223.CRM.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import ch.zli.m223.CRM.security.model.User;
-import ch.zli.m223.CRM.security.model.impl.UserImpl;
+import ch.zli.m223.CRM.model.User;
+import ch.zli.m223.CRM.model.impl.UserImpl;
 
 /**
  * The user repository.Spring keeps generating our JPA queries.

@@ -1,4 +1,4 @@
-package ch.zli.m223.CRM.security.service.impl;
+package ch.zli.m223.CRM.service.impl;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import ch.zli.m223.CRM.model.User;
+import ch.zli.m223.CRM.repository.UserRepository;
 import ch.zli.m223.CRM.role.CrmRoles;
-import ch.zli.m223.CRM.security.model.User;
-import ch.zli.m223.CRM.security.repository.UserRepository;
-import ch.zli.m223.CRM.security.service.UserService;
+import ch.zli.m223.CRM.service.UserService;
 /**
  * @see UserService
  */

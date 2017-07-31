@@ -1,4 +1,4 @@
-package ch.zli.m223.CRM.security.model.impl;
+package ch.zli.m223.CRM.model.impl;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import ch.zli.m223.CRM.security.model.User;
+import ch.zli.m223.CRM.model.User;
 
 /**
  * User for the Security implementation

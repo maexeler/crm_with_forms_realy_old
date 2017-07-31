@@ -1,8 +1,8 @@
-package ch.zli.m223.CRM.security.service;
+package ch.zli.m223.CRM.service;
 
 import java.util.List;
 
-import ch.zli.m223.CRM.security.model.User;
+import ch.zli.m223.CRM.model.User;
 
 /** The user service */
 public interface UserService {

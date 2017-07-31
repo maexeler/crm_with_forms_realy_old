@@ -1,4 +1,4 @@
-package ch.zli.m223.CRM.security.model;
+package ch.zli.m223.CRM.model;
 
 import java.util.Set;
 

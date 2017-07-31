@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.zli.m223.CRM.security.model.User;
-import ch.zli.m223.CRM.security.service.UserService;
+import ch.zli.m223.CRM.model.User;
+import ch.zli.m223.CRM.service.UserService;
 
 @Controller
 public class UserAdministrationController {

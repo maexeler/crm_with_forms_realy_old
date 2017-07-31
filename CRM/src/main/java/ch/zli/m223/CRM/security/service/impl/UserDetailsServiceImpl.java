@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import ch.zli.m223.CRM.model.User;
 import ch.zli.m223.CRM.security.SpringRole;
-import ch.zli.m223.CRM.security.model.User;
-import ch.zli.m223.CRM.security.service.UserService;
+import ch.zli.m223.CRM.service.UserService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService  {
