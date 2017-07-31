@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>	
+	<h1 id="h2">CSRF Example</h1>
+	<p>Note that CSRF kiks only in, if you are logged in</p>
+	
+
+	<h2 id="h2">Normal Form</h2>
+
+	<form action="/public/csrf/processing" method="post">
+		<!-- Insert this type if you 'r calling the action by yourself -->
+<!-- 		<input type="hidden" th:id="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+
+		<input type="text" id="msg" name="msg" value="Hello from normal form"/>
+        <input type="submit" value="Send from plain form"/>
+	</form>
+	
+	
+	<h2 id="h2">Thymeleaf Form</h2>
+					
+	<form th:action="@{/public/csrf/processing}" method="post">
+	<!-- No need for csrf field if  'th:action' is used -->
+		<input type="text" id="msg" name="msg" value="Hello from Thymeleaf form"/>
+        <input type="submit" value="Send from Thymeleaf form"/>
+	</form>
+
+
+	<h2 id="h2">Ordinary Link</h2>
+	
+	This works for http.csrf().disable()
+	<br>It will not work with csrf enabled because links use GET and csrf needs POST.</br>
+	
+	<p>If you want to use csrf with links, you have to map the GET request in your controller</p>
+	
+	<a href="/public/csrf/processing?msg=Hello from a link">Send from plain link</a>
+	<p>
+	<a th:href="@{/public/csrf/processing?msg=Hello from a Thymeleaf link}">Send from Thymeleaf link</a>
+	</p>
+	
+</body>
+</html>

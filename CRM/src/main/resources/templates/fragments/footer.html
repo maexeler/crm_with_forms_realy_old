@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head></head>
+<head>
+</head>
 <body>
 	<div th:fragment="footer">
 		<div class="row">
@@ -9,7 +10,11 @@
 			<div class="col-sm-12">
 				<div class="footer contentbox" id="footer">
 					<span sec:authorize="isAuthenticated()">
-		                Logged in as: <span sec:authentication="name"></span> |
+		                Logged in as: 
+		                <a th:href="@{/authenticatedUsers/changePassword/{id}(id=${#authentication.principal.id})}">
+		                	<span sec:authentication="name"/>
+		                </a> 
+		                |
 		                Roles: <span sec:authentication="principal.authorities"></span> |
 		                <a th:href="@{/logout}">Sign Out</a>
 		            </span>

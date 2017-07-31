@@ -19,6 +19,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 			HttpServletResponse httpServletResponse, 
 			AccessDeniedException accessDeniedException) throws IOException, ServletException 
 	{
+		System.out.println("AccessDeniedHandlerImpl" + accessDeniedException.getLocalizedMessage());
 		httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");	
 	}
 

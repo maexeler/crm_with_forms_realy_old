@@ -13,14 +13,19 @@
                     <li class="active"><a th:href="@{/}">Home</a></li>
                 </ul>
                 <span sec:authorize="not isAuthenticated()">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/login}">Login</a></li>
-                </ul>
+	                <ul class="nav navbar-nav">
+	                    <li class="active"><a th:href="@{/login}">Einloggen</a></li>
+	                </ul>
                 </span>
                 <span sec:authorize="isAuthenticated()">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/logout}">Logout</a></li>
-                </ul>
+	                <ul class="nav navbar-nav">
+	                    <li class="active"><a th:href="@{/logout}">Ausloggen</a></li>
+	                </ul>
+                </span>
+                <span sec:authorize="hasRole(T(ch.zli.m223.CRM.security.CrmSpringRoles).ROLE_ADMIN)">
+	                <ul class="nav navbar-nav">
+	                    <li class="active"><a th:href="@{/admin/showUsers}">Benutzer verwalten</a></li>
+	                </ul>
                 </span>
             </div>
         </div>

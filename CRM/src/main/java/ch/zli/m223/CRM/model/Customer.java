@@ -5,8 +5,8 @@ import java.util.List;
 /** Business object abstraction for a customer */
 public interface Customer {
 
-	/** @return the customer id or null if not yet persisted on the datastore */
-	Long getCustomerId();
+	/** @return the customer id or null if not yet persisted on the data store */
+	Long getId();
 	
 	/** @return the customers name */
 	String getName();

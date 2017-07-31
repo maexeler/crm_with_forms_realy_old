@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>CRM User Detail Page</title>
+	
+	<meta name="viewport" content="width=device-width initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+	<!-- Html -->
+	<link href="../../../resources/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+	<!-- Thymeleaf -->
+	<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div id="headwrapper">
+		<div th:replace="fragments/header :: header"></div>
+	</div>
+	
+	<div class="container">
+		<div class="col-sm-7 col-md-8">
+			<form th:action="@{/admin/saveUser}" method="post">
+				<fieldset>
+					<h1>Neuer Benutzer erstellen</h1>
+					<div th:if="${error}">
+						<div class="alert alert-danger">
+							<p>Benutzer ist schon vorhanden.</p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<input type="text" name="username" id="username"
+							th:value="${username}" placeholder="Benutzername" required="true"
+							autofocus="true" />
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" id="password"
+							th:value="${password}" placeholder="Passwort" required="true" />
+					</div>
+
+					<div class="form-group">
+						<ul>
+							<li th:each="role : ${T(ch.zli.m223.CRM.role.CrmRoles).ALL_ROLES}">
+						  		<input type="checkbox" th:text="${role}" th:value="${role}" th:name="rolenames"/>
+							</li>
+						</ul>
+					</div>
+
+					<p>
+						<input type="submit" value="Erstellen" />
+					</p>
+				</fieldset>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div th:replace="fragments/footer :: footer"></div>
+			</div>
+		</div>
+    </div>
+
+</body>
+</html>

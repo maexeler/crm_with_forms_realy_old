@@ -27,8 +27,7 @@
 
 					<h2 id="h2">Kundendaten</h2>
 		
-					<table class="table table-condensed movieList">
-<!-- 						<tr> <td th:text="${customer.customerId}">Id</td> </tr> -->
+					<table class="table table-condensed customerList">
 						<tr> <td th:text="${customer.name}">Name</td> </tr>
 						<tr> <td th:text="${customer.street}">Strasse</td> </tr>
 						<tr> <td th:text="${customer.city}">Ort</td> </tr>
@@ -37,9 +36,24 @@
 			</div>
 		
 			<div class="col-sm-7 col-md-8">
-				<div class="contentbox" id="login">
+				<div class="contentbox" id="memos">
 					
 					<h2 id="h2">Memos</h2>
+					
+					<form th:action="@{/user/addMemo}" method="post">
+					
+						<div class="row">
+							<div class="col-sm-7 col-md-8">
+								<input hidden="tue" type="text" name="customerId" id="customerId" th:value="${customer.id}"/>
+								<textarea
+									name="memoText" id="memoText" 
+									placeholder="New Memo" required="true"
+									rows="2" >
+								</textarea>
+		                    </div>
+		                    <p><input type="submit" value="Add Memo"/></p>
+		                </div>
+					</form>
 					
 					<table class="table table-condensed">
 						<tr  th:each="memo : ${customer.memos}">
@@ -51,15 +65,15 @@
 					<div id="logout"> </div>
 				</div>
 			</div>
-		</div>
-	
+		</div>	
+		
 		<div class="row">
 			<div class="col-sm-12">
 				<div th:replace="fragments/footer :: footer"></div>
 			</div>
 		</div>
-		
 	</div>
+		
 </body>
 
 </html>

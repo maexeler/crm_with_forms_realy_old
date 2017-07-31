@@ -1,24 +1,42 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <div th:replace="fragments/header :: header-css"/>
+	<title>CRM Access Denied</title>
+	
+	<meta name="viewport" content="width=device-width initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+	<!-- Html -->
+	<link href="../../../resources/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+	<!-- Thymeleaf -->
+	<link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 
-<div th:replace="fragments/header :: header"/>
-
-<div class="container">
-
-    <div class="starter-template">
-        <h1>403 - Access is denied</h1>
-        <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]',
-                you do not have permission to access this page.</div>
-    </div>
-
-</div>
-<!-- /.container -->
-
-<div th:replace="fragments/footer :: footer"/>
+	<div id="headwrapper">
+		<div th:replace="fragments/header :: header"></div>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-7 col-md-8">
+			
+				<h1>403 - Access is denied</h1>
+	        
+	        	<div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]', </div>
+	        	<p> you do not have permission to access this page.</p>
+	    	</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-sm-12">
+				<div th:replace="fragments/footer :: footer"></div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -43,10 +43,8 @@ public class MemoImpl implements Memo {
 		this.noteText = noteText;
 	}
 	
-	@Override
-	public Date getCoverageDate() {
-		return new Date(coverage);
-	}
-	
+	@Override public Long getId() { return id; }
+	@Override public Date getCoverageDate() { return new Date(coverage); }
 	@Override public String getNote() { return noteText; }
+
 }

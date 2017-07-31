@@ -50,16 +50,16 @@ public class CustomerImpl implements Customer {
 		this.city = city;
 	}
 	
-	@Override public Long getCustomerId() { return id; }
-	@Override public String getName() { return name; }
+	@Override public Long getId()       { return id; }
+	@Override public String getName()   { return name; }
 	@Override public String getStreet() { return street; }
-	@Override public String getCity() { return city; }
+	@Override public String getCity()   { return city; }
 	
 	@Override public List<Memo> getMemos() {
 		ArrayList<Memo> res = new ArrayList<Memo>(memos);
 		Collections.sort(res, new Comparator<Memo>() {
 			public int compare(Memo o1, Memo o2) {
-				return (int)(o2.getCoverageDate().getTime() - o1.getCoverageDate().getTime());
+				return (int)(o2.getId() - o1.getId());
 			}
 		});
 		return res;

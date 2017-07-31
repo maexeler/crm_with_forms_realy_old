@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.service.CustomerService;
@@ -37,5 +38,14 @@ public class CustomerController {
 	public String showCustomer(Model model, @PathVariable("id") long customerId) {
 		model.addAttribute("customer", customerService.getCustomer(customerId));
 		return "showCustomer";
+	}
+	
+	@RequestMapping("/user/addMemo")
+	public String addMemo(Model model, 
+			@RequestParam("customerId") long customerId,
+			@RequestParam("memoText") String memoText)
+	{
+		customerService.addMemoToCustomer(customerId, memoText);
+		return "redirect:/user/showCustomer/" + customerId;
 	}
 }

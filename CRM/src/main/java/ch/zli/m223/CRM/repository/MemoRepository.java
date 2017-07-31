@@ -11,7 +11,7 @@ import ch.zli.m223.CRM.model.impl.MemoImpl;
 public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 	
 	/**
-	 * Create a new Memo object and add it to tis customer 
+	 * Create a new Memo object and add it to this customer 
 	 * @param customer
 	 * @param memoText
 	 * @return a new Memo object

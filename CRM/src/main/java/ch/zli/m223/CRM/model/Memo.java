@@ -5,6 +5,9 @@ import java.util.Date;
 /** Business object abstraction for a memo */
 public interface Memo {
 	
+	/** @return the memo id or null if not yet persisted on the data store */
+	Long getId();
+	
 	/** @return the date the Memo was created. */
 	Date getCoverageDate();
 	
