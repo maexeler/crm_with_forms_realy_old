@@ -1,5 +1,7 @@
 package ch.zli.m223.CRM.repository;
 
+import java.util.Date;
+
 import org.springframework.data.repository.CrudRepository;
 
 import ch.zli.m223.CRM.model.Customer;
@@ -23,5 +25,12 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 		customerImpl.addMemo(memo);
 		save(memo);
 		return memo;
+	}
+
+	default public Memo update(Memo memo, String memoText, Date date) {
+		MemoImpl memoImpl = (MemoImpl)memo;
+		memoImpl.setMemoText(memoText);
+		memoImpl.setDate(date);
+		return save(memoImpl);
 	}
 }

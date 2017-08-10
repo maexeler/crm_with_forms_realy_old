@@ -69,4 +69,16 @@ public class CustomerImpl implements Customer {
 		memos.add(memo);
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 }

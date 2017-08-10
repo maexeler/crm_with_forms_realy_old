@@ -30,10 +30,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http
 			.authorizeRequests()
+				// Web API
 				.antMatchers("/", "/home", "/public/**").permitAll()
 				.antMatchers("/admin/**").hasAnyRole(CrmRoles.ADMIN)
 				.antMatchers("/user/**").hasAnyRole(CrmRoles.USER)
 				.antMatchers("/authenticatedUsers/**").hasAnyRole(CrmRoles.ADMIN, CrmRoles.USER)
+				// Rest API
+				.antMatchers("/rest/authentication/login", "/rest/authentication/logout").permitAll()
+				.antMatchers("/rest/customer/**").hasAnyRole(CrmRoles.USER)
+				.antMatchers("/rest/admin/**").hasAnyRole(CrmRoles.ADMIN)
+				
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()

@@ -1,6 +1,7 @@
 package ch.zli.m223.CRM.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -52,4 +53,46 @@ public class CustomerServiceImpl implements CustomerService {
 		return memorepository.addMemo((CustomerImpl)customer, memoText);
 	}
 
+	// Implementations needed by the REST-API
+	// --------------------------------------
+	
+	@Override
+	public Customer updateCustomer(Long customerId, String name, String street, String city) {
+		Customer customer = customerRepository.findOne(customerId);
+		if (customer == null) { return null; }
+		
+		return customerRepository.update(customer, name, street, city);
+	}
+
+	@Override
+	public void deleteCustomer(long customerId) {
+		customerRepository.delete(customerId);
+	}
+
+	@Override
+	public List<Memo> getMemos(long customerId) {
+		Customer customer = customerRepository.findOne(customerId);
+		if (customer == null) { return null; }
+		
+		return customer.getMemos();
+	}
+
+	@Override
+	public Memo getMemo(long memoId) {
+		return memorepository.findOne(memoId);
+	}
+
+	@Override
+	public Memo updateMemo(Long memoId, String memoText, Date date) {
+		Memo memo = memorepository.findOne(memoId);
+		if (memo == null) { return null; }
+		
+		return memorepository.update(memo, memoText, date);
+	}
+
+	@Override
+	public void deleteMemo(long memoId) {
+		memorepository.delete(memoId);
+	}
+	
 }

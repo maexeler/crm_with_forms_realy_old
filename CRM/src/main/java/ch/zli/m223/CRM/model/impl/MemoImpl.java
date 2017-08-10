@@ -47,4 +47,12 @@ public class MemoImpl implements Memo {
 	@Override public Date getCoverageDate() { return new Date(coverage); }
 	@Override public String getNote() { return noteText; }
 
+	public void setMemoText(String memoText) {
+		noteText = memoText;
+	}
+
+	public void setDate(Date date) {
+		coverage = date.getTime();
+	}
+
 }

@@ -1,5 +1,6 @@
 package ch.zli.m223.CRM.service;
 
+import java.util.Date;
 import java.util.List;
 
 import ch.zli.m223.CRM.model.Customer;
@@ -8,6 +9,9 @@ import ch.zli.m223.CRM.model.Memo;
 /** The customer services */
 public interface CustomerService {
 
+	// CRUD functions for Customer
+	// ---------------------------
+	
 	/** @return the list of all customers*/ 
 	List<Customer> getCustomerList();
 	
@@ -27,10 +31,58 @@ public interface CustomerService {
 	Customer addCustomer(String name, String street, String city);
 	
 	/**
+	 * Update a given Customer
+	 * @param customerId the customers id
+	 * @param name its name
+	 * @param street its street
+	 * @param city its city
+	 * @return the updated customer object or null if not found
+	 */
+	Customer updateCustomer(Long customerId, String name, String street, String city);
+	
+	/**
+	 * Delete a customer
+	 * @param id the customers id
+	 */
+	void deleteCustomer(long customerId);
+	
+	// CRUD functions for Memo
+	// -----------------------
+	
+	/**
+	 * Get all memos for a given customer
+	 * @param customerId the customers id
+	 * @return a (possibly) empty list of memos
+	 */
+	List<Memo> getMemos(long customerId);
+	
+	/**
+	 * Get a memo
+	 * @param memoId the memos id
+	 * @return the memo or null if not found
+	 */
+	Memo getMemo(long memoId);
+	
+	/**
 	 * Add a new Memo to a customers memo list
 	 * @param customerId the customers id
 	 * @param memotext the text for the new memo
 	 * @return the newly created memo object
 	 */
 	Memo addMemoToCustomer(long customerId, String memoText);
+	
+	/**
+	 * Update a given memo
+	 * @param memoId the memos id
+	 * @param memoText the new text
+	 * @param date the coverage date
+	 * @return the updated memo or null if not found
+	 */
+	Memo updateMemo(Long memoId, String memoText, Date date);
+
+	/**
+	 * Delete a memo
+	 * @param memoId the memos id
+	 */
+	void deleteMemo(long memoId);
 }

@@ -20,4 +20,12 @@ public interface CustomerRepository extends JpaRepository<CustomerImpl, Long> {
 		save(customer);
 		return customer;
 	}
+
+	default Customer update(Customer customer, String name, String street, String city) {
+		CustomerImpl customerImpl = (CustomerImpl) customer;
+		customerImpl.setName(name);
+		customerImpl.setStreet(street);
+		customerImpl.setCity(city);
+		return save(customerImpl);
+	}
 }
