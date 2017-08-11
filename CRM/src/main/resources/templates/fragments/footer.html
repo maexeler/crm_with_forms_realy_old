@@ -10,13 +10,13 @@
 			<div class="col-sm-12">
 				<div class="footer contentbox" id="footer">
 					<span sec:authorize="isAuthenticated()">
-		                Logged in as: 
+		                Eingelogged als: 
 		                <a th:href="@{/authenticatedUsers/changePassword/{id}(id=${#authentication.principal.id})}">
 		                	<span sec:authentication="name"/>
 		                </a> 
 		                |
-		                Roles: <span sec:authentication="principal.authorities"></span> |
-		                <a th:href="@{/logout}">Sign Out</a>
+		                Rollen: <span sec:authentication="principal.authorities"></span> |
+		                <a th:href="@{/logout}">Ausloggen</a>
 		            </span>
 					<p id="copyright">Alle Rechte vorbehalten &copy; CRM International Inc.</p>
 				</div>

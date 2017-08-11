@@ -1,0 +1,192 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CRM-user",
+		"_postman_id": "7a4a2520-d473-1634-a9e0-7b2cabf4deab",
+		"description": "All rest service functions for user handling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/rest/users",
+			"request": {
+				"url": "localhost:8081/rest/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/user/create",
+			"request": {
+				"url": "localhost:8081/rest/user/create",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"userName\": \"max2\",\n    \"password\": \"max\",\n    \"roles\": [\n        \"crm_user\", \"crm_admin\"\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/user/:id",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/user/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"user",
+						":id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/user/:id/update/roles?password=user",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/user/:id/update/roles?password=user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"user",
+						":id",
+						"update",
+						"roles"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "user",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"roles\": [\n        \"crm_user\", \"gaga\"\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/user/:id/update/password?oldPassword=user0&newPassword=user",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/user/:id/update/password?oldPassword=user0&newPassword=user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"user",
+						":id",
+						"update",
+						"password"
+					],
+					"query": [
+						{
+							"key": "oldPassword",
+							"value": "user0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "newPassword",
+							"value": "user",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/user/:id/delete",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/user/:id/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"user",
+						":id",
+						"delete"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

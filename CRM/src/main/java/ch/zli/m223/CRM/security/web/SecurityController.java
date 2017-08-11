@@ -20,12 +20,12 @@ public class SecurityController {
 		if (allRequestParams.containsKey("logout")) {
 			return "redirect:/";
 		}
-        return "/security/login";
+        return "security/login";
     }
 	
 	@GetMapping("/403")
     public String error403() {
-        return "/security/403";
+        return "security/403";
     }
 
 	/**

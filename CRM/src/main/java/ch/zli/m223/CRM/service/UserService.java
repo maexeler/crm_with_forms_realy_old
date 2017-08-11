@@ -50,7 +50,7 @@ public interface UserService {
      * @param roleName an array of allowed role manes
      * @return a the updated user or null if a user with this id does not exist
 	 */
-	User updateUser(long id, String password, String... roleNames);
+	User updateRoles(long id, String password, String... roleNames);
 
 	/**
 	 * Change the password for a given user

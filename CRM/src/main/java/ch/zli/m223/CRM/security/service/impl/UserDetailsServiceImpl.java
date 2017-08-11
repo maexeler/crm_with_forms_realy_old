@@ -1,5 +1,7 @@
 package ch.zli.m223.CRM.security.service.impl;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 				);
 			this.user = user;
 		}
-		public long getId() { return user.getId(); }
+		public long        getId()        { return user.getId(); }
+		public Set<String> getRoleNames() { return user.getRoleNames(); }
 	}
 
 	@Override

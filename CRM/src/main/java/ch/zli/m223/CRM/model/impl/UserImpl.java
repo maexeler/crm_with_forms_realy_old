@@ -71,23 +71,7 @@ public class UserImpl implements User {
 	 */
 	public UserImpl removeRole(String role)      { roleNames.remove(role); return this; }
 	
-	/**
-	 * Replace all roles
-	 * @param roleNames the new role names to be granted
-	 */
-	public void setRoles(String... roleNames) {
-		this.roleNames = new HashSet<>();
-		for (String role : roleNames) {
-			addRole(role);
-		}
-	}
-
 	public void setUserName(String userName)     { this.userName = userName; }
-	public void setPassword(String password) {
-		if (passwordHash == password) { return; }
-		
-		passwordHash = new BCryptPasswordEncoder().encode(password);
-	}
 
 	/**
 	 * Set a new password
@@ -98,10 +82,37 @@ public class UserImpl implements User {
 	public boolean changePassword(String oldPassword, String newPassword) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
-		if (encoder.matches(oldPassword, passwordHash)) {
+		if (passwordDoesMatch(oldPassword)) {
 			passwordHash = encoder.encode(newPassword);
 			return true;
 		}
 		return false;
 	}
+
+	/**
+	 * Update roles
+	 * @param password a valid plain text or password hash
+	 * @param roleNames the new roles
+	 */
+	public boolean updateRoles(String password, String[] roleNames) {
+		if (passwordDoesMatch(password)) {
+			setRoles(roleNames);
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean passwordDoesMatch(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return passwordHash.equals(password) || 
+				encoder.matches(password, passwordHash);
+	}
+	
+	private void setRoles(String... roleNames) {
+		this.roleNames = new HashSet<>();
+		for (String role : roleNames) {
+			addRole(role);
+		}
+	}
+
 }

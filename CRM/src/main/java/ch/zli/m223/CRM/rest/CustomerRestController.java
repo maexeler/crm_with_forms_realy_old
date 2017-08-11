@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.CRM.model.Customer;
@@ -46,7 +46,7 @@ public class CustomerRestController {
 	 * @return the new Customer
 	 */
 	@RequestMapping(value="/rest/customer/create", method=RequestMethod.PUT)
-	public CustomerDto createCustomer(@RequestParam("customer") CustomerDto customerDto) {
+	public CustomerDto createCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.addCustomer(customerDto.name, customerDto.street, customerDto.city);
 		return new CustomerDto(customer);
@@ -69,7 +69,7 @@ public class CustomerRestController {
 	 * @return the updated customer
 	 */
 	@RequestMapping(value="/rest/customer/update", method=RequestMethod.PUT)
-	public CustomerDto updateCustomer(@RequestParam("customer") CustomerDto customerDto) {
+	public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.updateCustomer(customerDto.id, customerDto.name, customerDto.street, customerDto.city);
 		return new CustomerDto(customer);
@@ -79,7 +79,7 @@ public class CustomerRestController {
 	 * Delete an individual customer
 	 * @param customerId the customers id
 	 */
-	@RequestMapping(value="/rest/customer/{id}/delete", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/customer/{id}/delete", method=RequestMethod.PUT)
 	public void deleteCustomer(@PathVariable("id") long customerId) {
 		customerService.deleteCustomer(customerId);
 	}
@@ -101,7 +101,7 @@ public class CustomerRestController {
 	 * Create a new memo
 	 */
 	@RequestMapping(value="/rest/customer/{id}/memo/create", method=RequestMethod.PUT)
-	public MemoDto createMemo(@PathVariable("id") long customerId, @RequestParam("memo") MemoDto memoDto) {
+	public MemoDto createMemo(@PathVariable("id") long customerId, @RequestBody MemoDto memoDto) {
 		Memo memo = customerService.addMemoToCustomer(customerId, memoDto.noteText);
 		return new MemoDto(memo);
 	}
@@ -119,7 +119,7 @@ public class CustomerRestController {
 	 * Update a memo
 	 */
 	@RequestMapping(value="/rest/customer/memo/update", method=RequestMethod.PUT)
-	public MemoDto updateMemo(@RequestParam("memo") MemoDto memoDto) {
+	public MemoDto updateMemo(@RequestBody MemoDto memoDto) {
 		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, memoDto.coverage);
 		return new MemoDto(memo);
 	}

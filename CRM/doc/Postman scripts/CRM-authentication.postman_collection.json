@@ -1,0 +1,81 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CRM-authentication",
+		"_postman_id": "9f0e7d82-9f8d-2f18-bb4b-898256848b62",
+		"description": "All rest service functuin for authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/rest/authentication/roles",
+			"request": {
+				"url": "localhost:8081/rest/authentication/roles",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/authentication/login?username=user&password=user",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/authentication/login?username=user&password=user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"authentication",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "user",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/authentication/credentials",
+			"request": {
+				"url": "localhost:8081/rest/authentication/credentials",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/authentication/logout",
+			"request": {
+				"url": "localhost:8081/rest/authentication/logout",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

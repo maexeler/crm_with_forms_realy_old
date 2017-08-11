@@ -6,8 +6,6 @@ import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import ch.zli.m223.CRM.model.User;
@@ -63,11 +61,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@RolesAllowed(CrmRoles.ADMIN)
-	public User updateUser(long id, String password, String... roleNames) {
+	public User updateRoles(long id, String password, String... roleNames) {
 		User user = userRepository.findOne(id);
 		if (user == null) { return null; }
 		
-		return userRepository.updateUser(user, password, roleNames);
+		return userRepository.updateRoles(user, password, roleNames);
 	}
 
 	@Override
@@ -75,13 +73,7 @@ public class UserServiceImpl implements UserService {
 	public boolean updatePassword(long userId, String oldPassword, String newPassword) {
 		User user = userRepository.findOne(userId);
 		if (user == null) { return false; }
-		
-		// Now check for the credentials
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(!auth.getName().equals(user.getUserName())) {
-			return false;
-		}
-		
+				
 		return userRepository.updatePassword(user, oldPassword, newPassword);
 	}
 }

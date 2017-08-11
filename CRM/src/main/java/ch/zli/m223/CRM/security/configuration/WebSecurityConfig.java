@@ -3,7 +3,6 @@ package ch.zli.m223.CRM.security.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,7 +13,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import ch.zli.m223.CRM.role.CrmRoles;
 
 @Configuration
-@EnableGlobalMethodSecurity(jsr250Enabled  = true) // Add method level security by using @RolesAllowed
+//@EnableGlobalMethodSecurity(jsr250Enabled  = true) // Add method level security by using @RolesAllowed
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired private AccessDeniedHandler accessDeniedHandler;
@@ -36,9 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user/**").hasAnyRole(CrmRoles.USER)
 				.antMatchers("/authenticatedUsers/**").hasAnyRole(CrmRoles.ADMIN, CrmRoles.USER)
 				// Rest API
+				.antMatchers("/rest/**").permitAll() // permit all for easier testing
+/*
 				.antMatchers("/rest/authentication/login", "/rest/authentication/logout").permitAll()
 				.antMatchers("/rest/customer/**").hasAnyRole(CrmRoles.USER)
 				.antMatchers("/rest/admin/**").hasAnyRole(CrmRoles.ADMIN)
+*/
 				
 				.anyRequest().authenticated()
 			.and()
@@ -52,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().accessDeniedHandler(accessDeniedHandler)
 			.and()
 			// Disable Cross-Site Request Forgery prevention for easier development 
-//			.csrf().disable()
+			.csrf().disable()
 			;
 	}
 	

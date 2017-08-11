@@ -1,0 +1,272 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CRM-customer",
+		"_postman_id": "aa4708f7-5d6d-1d25-faf6-346509b0738c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/rest/customers",
+			"request": {
+				"url": "localhost:8081/rest/customers",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/create",
+			"request": {
+				"url": "localhost:8081/rest/customer/create",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"name\": \"Hirsch Harry\",\n    \"street\": \"Im Wäldli II\",\n    \"city\": \"1234 Brinzwilen\"\n}\n    "
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/:id",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						":id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/update",
+			"request": {
+				"url": "localhost:8081/rest/customer/update",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 4,\n    \"name\": \"Hirsch Harry\",\n    \"street\": \"am See\",\n    \"city\": \"1234 Brinzwilen\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/:id/delete",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/:id/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						":id",
+						"delete"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/:id/memos",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/:id/memos",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						":id",
+						"memos"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/:id/memo/create",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/:id/memo/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						":id",
+						"memo",
+						"create"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"coverage\": null,\n    \"noteText\": \"this is not a love song\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/memo/:id",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/memo/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						"memo",
+						":id"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/memo/update",
+			"request": {
+				"url": "localhost:8081/rest/customer/memo/update",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"coverage\": 1502438521102,\n    \"noteText\": \"Sitzung vereinbart am 13.11.17\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/rest/customer/memo/:id/delete",
+			"request": {
+				"url": {
+					"raw": "localhost:8081/rest/customer/memo/:id/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rest",
+						"customer",
+						"memo",
+						":id",
+						"delete"
+					],
+					"query": [],
+					"variable": [
+						{
+							"key": "id",
+							"value": "7"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

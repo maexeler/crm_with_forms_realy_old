@@ -70,7 +70,7 @@ public class UserAdministrationController {
 		@RequestParam("password") String password,
 		@RequestParam(value="rolenames", defaultValue="") String[] roles)
 	{
-		userService.updateUser(id, password, roles);
+		userService.updateRoles(id, password, roles);
 		return "redirect:/admin/showUser/" + id;
 	}
 	

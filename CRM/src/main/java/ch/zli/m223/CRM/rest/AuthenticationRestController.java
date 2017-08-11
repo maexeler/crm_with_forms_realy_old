@@ -1,5 +1,7 @@
 package ch.zli.m223.CRM.rest;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -12,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import ch.zli.m223.CRM.model.dto.CredentialDto;
+import ch.zli.m223.CRM.model.dto.RolesDto;
+import ch.zli.m223.CRM.role.CrmRoles;
+import ch.zli.m223.CRM.security.service.impl.UserDetailsServiceImpl;
 
 /**
  * Thats not the way to do it. <p />
@@ -50,6 +57,26 @@ public class AuthenticationRestController {
 	@RequestMapping(value="/rest/authentication/logout", method=RequestMethod.GET)
 	public void logout() {
 		SecurityContextHolder.clearContext();
+	}
+	
+	@RequestMapping(value="/rest/authentication/roles", method=RequestMethod.GET)
+	public RolesDto roles() {
+		return new RolesDto(CrmRoles.ALL_ROLES);
+	}
+	
+	@RequestMapping(value="/rest/authentication/credentials", method=RequestMethod.GET)
+	public CredentialDto credentials() {
+		String name = "";
+		Set<String> roles = null;
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		if (principal instanceof UserDetailsServiceImpl.UserDetailsImpl) {
+			UserDetailsServiceImpl.UserDetailsImpl user = (UserDetailsServiceImpl.UserDetailsImpl)principal;
+			name = user.getUsername();
+			roles = user.getRoleNames();
+		}
+		
+		return new CredentialDto(name, roles);
 	}
 }
   	
