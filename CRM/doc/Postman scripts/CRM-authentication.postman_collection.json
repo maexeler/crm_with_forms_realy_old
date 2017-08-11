@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8081/rest/authentication/roles",
+			"name": "Get all available roles",
 			"request": {
 				"url": "localhost:8081/rest/authentication/roles",
 				"method": "GET",
@@ -19,7 +19,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/authentication/login?username=user&password=user",
+			"name": "Login as a user",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/authentication/login?username=user&password=user",
@@ -56,7 +56,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/authentication/credentials",
+			"name": "Get the credentials for the logged in user",
 			"request": {
 				"url": "localhost:8081/rest/authentication/credentials",
 				"method": "GET",
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/authentication/logout",
+			"name": "Log out",
 			"request": {
 				"url": "localhost:8081/rest/authentication/logout",
 				"method": "GET",

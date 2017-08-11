@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8081/rest/customers",
+			"name": "Get all customers",
 			"request": {
 				"url": "localhost:8081/rest/customers",
 				"method": "GET",
@@ -19,7 +19,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/create",
+			"name": "Create a new customer",
 			"request": {
 				"url": "localhost:8081/rest/customer/create",
 				"method": "PUT",
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/:id",
+			"name": "Get a specific customer",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/:id",
@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/update",
+			"name": "Update a customer",
 			"request": {
 				"url": "localhost:8081/rest/customer/update",
 				"method": "PUT",
@@ -88,7 +88,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/:id/delete",
+			"name": "Delete a specific customer",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/:id/delete",
@@ -118,7 +118,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/:id/memos",
+			"name": "Get all memos for a customer",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/:id/memos",
@@ -148,7 +148,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/:id/memo/create",
+			"name": "Create a new memo for a customer",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/:id/memo/create",
@@ -188,7 +188,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/memo/:id",
+			"name": "Get a specific memo",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/memo/:id",
@@ -218,7 +218,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/memo/update",
+			"name": "Update a memo",
 			"request": {
 				"url": "localhost:8081/rest/customer/memo/update",
 				"method": "PUT",
@@ -238,7 +238,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/customer/memo/:id/delete",
+			"name": "Delete a memo",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/customer/memo/:id/delete",

@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:8081/rest/users",
+			"name": "Get al users",
 			"request": {
 				"url": "localhost:8081/rest/users",
 				"method": "GET",
@@ -19,7 +19,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/user/create",
+			"name": "Create a new user",
 			"request": {
 				"url": "localhost:8081/rest/user/create",
 				"method": "PUT",
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/user/:id",
+			"name": "Get a specific user",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/user/:id",
@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/user/:id/update/roles?password=user",
+			"name": "Update a users roles",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/user/:id/update/roles?password=user",
@@ -115,7 +115,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/user/:id/update/password?oldPassword=user0&newPassword=user",
+			"name": "Update a users password",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/user/:id/update/password?oldPassword=user0&newPassword=user",
@@ -159,7 +159,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/rest/user/:id/delete",
+			"name": "Delete a user",
 			"request": {
 				"url": {
 					"raw": "localhost:8081/rest/user/:id/delete",
