@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "CRM-user",
-		"_postman_id": "7a4a2520-d473-1634-a9e0-7b2cabf4deab",
+		"_postman_id": "58b6c2fb-dcdf-0a55-c148-532743618451",
 		"description": "All rest service functions for user handling",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -13,7 +13,10 @@
 				"url": "localhost:8081/rest/users",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -118,7 +121,7 @@
 			"name": "Update a users password",
 			"request": {
 				"url": {
-					"raw": "localhost:8081/rest/user/:id/update/password?oldPassword=user0&newPassword=user",
+					"raw": "localhost:8081/rest/user/:id/update/password?oldPassword=user&newPassword=user0",
 					"host": [
 						"localhost"
 					],
@@ -133,13 +136,13 @@
 					"query": [
 						{
 							"key": "oldPassword",
-							"value": "user0",
+							"value": "user",
 							"equals": true,
 							"description": ""
 						},
 						{
 							"key": "newPassword",
-							"value": "user",
+							"value": "user0",
 							"equals": true,
 							"description": ""
 						}
@@ -178,12 +181,19 @@
 						{
 							"key": "id",
 							"value": "4"
+						},
+						{
+							"value": "4",
+							"id": "undefined"
 						}
 					]
 				},
 				"method": "PUT",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []

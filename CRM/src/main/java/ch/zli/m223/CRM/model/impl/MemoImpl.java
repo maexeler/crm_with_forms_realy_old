@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.model.Memo;
 
 /** @see Memo */
@@ -17,7 +18,7 @@ public class MemoImpl implements Memo {
 	@GeneratedValue
 	private Long id;
 	
-	private Long coverage;
+	private long coverage;
 	private String noteText;
 	
 	// Two directional mapping,
@@ -26,7 +27,7 @@ public class MemoImpl implements Memo {
 	private CustomerImpl customer;
 	
 	
-	/** To be used  by JPA only*/
+	/** To be used by us and JPA only*/
 	public MemoImpl() {
 		coverage = new Date().getTime();
 		noteText = "";
@@ -43,16 +44,13 @@ public class MemoImpl implements Memo {
 		this.noteText = noteText;
 	}
 	
-	@Override public Long getId() { return id; }
-	@Override public Date getCoverageDate() { return new Date(coverage); }
-	@Override public String getNote() { return noteText; }
+	@Override public Long getId()            { return id; }
+	@Override public Date getCoverageDate()  { return new Date(coverage); }
+	@Override public String getNote()        { return noteText; }
+	@Override public Customer getCustomer()  { return customer; }
 
-	public void setMemoText(String memoText) {
-		noteText = memoText;
-	}
+	public void setMemoText(String memoText) { noteText = memoText; }
 
-	public void setDate(Date date) {
-		coverage = date.getTime();
-	}
+	public void setDate(Date date)           { coverage = date.getTime(); }
 
 }

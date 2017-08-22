@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class CustomerImpl implements Customer {
 	
 	// Two directional mapping
 	// Each Customer owns its memos
-	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<MemoImpl> memos;
 
 	/** To be used  by JPA only*/

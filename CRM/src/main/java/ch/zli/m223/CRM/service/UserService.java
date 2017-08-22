@@ -15,9 +15,9 @@ public interface UserService {
 	User getUserById(long id);
 
 	/**
-	 * Get an user object by its user mane
+	 * Get an user object by its user name
 	 * @param name the users name
-	 * @return Optional containing the user or null
+	 * @return a user or null if not found
 	 */
     User getUserByName(String name);
 

@@ -45,7 +45,7 @@ public class CustomerRestController {
 	 * @param customerDto the new customer
 	 * @return the new Customer
 	 */
-	@RequestMapping(value="/rest/customer/create", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/create", method=RequestMethod.POST)
 	public CustomerDto createCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.addCustomer(customerDto.name, customerDto.street, customerDto.city);
@@ -68,7 +68,7 @@ public class CustomerRestController {
 	 * @param customerDto the changed customer
 	 * @return the updated customer
 	 */
-	@RequestMapping(value="/rest/customer/update", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/update", method=RequestMethod.POST)
 	public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.updateCustomer(customerDto.id, customerDto.name, customerDto.street, customerDto.city);
@@ -79,7 +79,7 @@ public class CustomerRestController {
 	 * Delete an individual customer
 	 * @param customerId the customers id
 	 */
-	@RequestMapping(value="/rest/customer/{id}/delete", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/{id}/delete", method=RequestMethod.DELETE)
 	public void deleteCustomer(@PathVariable("id") long customerId) {
 		customerService.deleteCustomer(customerId);
 	}
@@ -100,7 +100,7 @@ public class CustomerRestController {
 	/**
 	 * Create a new memo
 	 */
-	@RequestMapping(value="/rest/customer/{id}/memo/create", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/{id}/memo/create", method=RequestMethod.POST)
 	public MemoDto createMemo(@PathVariable("id") long customerId, @RequestBody MemoDto memoDto) {
 		Memo memo = customerService.addMemoToCustomer(customerId, memoDto.noteText);
 		return new MemoDto(memo);
@@ -118,16 +118,16 @@ public class CustomerRestController {
 	/**
 	 * Update a memo
 	 */
-	@RequestMapping(value="/rest/customer/memo/update", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/memo/update", method=RequestMethod.POST)
 	public MemoDto updateMemo(@RequestBody MemoDto memoDto) {
-		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, memoDto.coverage);
+		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, memoDto.getCoverageDate());
 		return new MemoDto(memo);
 	}
 	
 	/**
 	 * Delete a memo
 	 */
-	@RequestMapping(value="/rest/customer/memo/{id}/delete", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/customer/memo/{id}/delete", method=RequestMethod.DELETE)
 	public void deleteMemo(@PathVariable("id") long memoId) {
 		customerService.deleteMemo(memoId);
 	}

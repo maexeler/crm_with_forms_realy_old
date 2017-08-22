@@ -75,10 +75,10 @@ public interface CustomerService {
 	 * Update a given memo
 	 * @param memoId the memos id
 	 * @param memoText the new text
-	 * @param date the coverage date
+	 * @param localDateTime the coverage date
 	 * @return the updated memo or null if not found
 	 */
-	Memo updateMemo(Long memoId, String memoText, Date date);
+	Memo updateMemo(Long memoId, String memoText, Date localDateTime);
 
 	/**
 	 * Delete a memo

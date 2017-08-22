@@ -11,6 +11,9 @@ public interface Memo {
 	/** @return the date the Memo was created. */
 	Date getCoverageDate();
 	
-	/** @ return the memos content */
+	/** @return the memos content */
 	String getNote();
+
+	/** @return the memos owner */
+	Customer getCustomer();
 }
