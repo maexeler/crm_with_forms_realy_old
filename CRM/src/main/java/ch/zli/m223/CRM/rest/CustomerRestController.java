@@ -1,6 +1,7 @@
 package ch.zli.m223.CRM.rest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,8 @@ public class CustomerRestController {
 	 */
 	@RequestMapping(value="/rest/customer/memo/update", method=RequestMethod.POST)
 	public MemoDto updateMemo(@RequestBody MemoDto memoDto) {
-		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, memoDto.getCoverageDate());
+		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, 
+				memoDto.getCoverage()==null ? new Date() : new Date(memoDto.getCoverage()));
 		return new MemoDto(memo);
 	}
 	
