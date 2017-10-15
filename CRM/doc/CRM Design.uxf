@@ -12,7 +12,7 @@
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Customer
 --
-+ getCustomerId(): Long
++ getId(): Long
 + getName(): String
 + getStreet(): String
 + getCity(): String
@@ -30,6 +30,7 @@ Customer
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Memo
 --
++ getId(): Long
 + getCoverageDate(): Date
 + getNote(): String</panel_attributes>
     <additional_attributes/>

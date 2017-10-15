@@ -67,10 +67,9 @@ public class UserAdministrationController {
 	
 	@RequestMapping("/admin/saveUser/{id}")
 	public String saveModifiedUser(@PathVariable("id") long id,
-		@RequestParam("password") String password,
 		@RequestParam(value="rolenames", defaultValue="") String[] roles)
 	{
-		userService.updateRoles(id, password, roles);
+		userService.updateRoles(id, roles);
 		return "redirect:/admin/showUser/" + id;
 	}
 	

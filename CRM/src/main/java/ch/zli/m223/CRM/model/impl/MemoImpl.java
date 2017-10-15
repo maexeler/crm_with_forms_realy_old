@@ -22,7 +22,7 @@ public class MemoImpl implements Memo {
 	private String noteText;
 	
 	// Two directional mapping,
-	// each memo belongs to exact one customer
+	// Each memo belongs to exact one customer
 	@ManyToOne
 	private CustomerImpl customer;
 	

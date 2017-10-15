@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@RolesAllowed({CrmRoles.ADMIN, CrmRoles.USER})
-	public User getUserById(long id) {
-		return userRepository.findOne(id);
+	public User getUserById(long userId) {
+		return userRepository.findOne(userId);
 	}
 
 	// This member is used by UserDetailsServiceImpl which is part of the security checking.
@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@RolesAllowed(CrmRoles.ADMIN)
-	public User updateRoles(long id, String password, String... roleNames) {
-		User user = userRepository.findOne(id);
+	public User updateRoles(long userId, String... roleNames) {
+		User user = userRepository.findOne(userId);
 		if (user == null) { return null; }
 		
-		return userRepository.updateRoles(user, password, roleNames);
+		return userRepository.updateRoles(user, roleNames);
 	}
 
 	@Override

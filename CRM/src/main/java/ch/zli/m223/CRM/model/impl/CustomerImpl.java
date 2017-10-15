@@ -16,11 +16,11 @@ import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.model.Memo;
 
 /** @see Customer */
-@Entity(name="Customer")
+@Entity(name="Customer")	// (1)
 public class CustomerImpl implements Customer {
 
-	@Id
-	@GeneratedValue
+	@Id	// (2)
+	@GeneratedValue // (3)
 	private Long id;
 	
 	private String name;
@@ -28,7 +28,8 @@ public class CustomerImpl implements Customer {
 	private String city;
 	
 	// Two directional mapping
-	// Each Customer owns its memos
+	// Each customer owns its memos
+	// Deleting a customer deletes its memos too.
 	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<MemoImpl> memos;
 
@@ -45,7 +46,7 @@ public class CustomerImpl implements Customer {
 	 * @param city the customers address
 	 */
 	public CustomerImpl(String name, String street, String city) {
-		super();
+		this();
 		this.name = name;
 		this.street = street;
 		this.city = city;

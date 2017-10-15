@@ -61,17 +61,16 @@ public class UserRestController {
 	
 	/**
 	 * Update the users roles
-	 * @param userDto password and roles must be set
+	 * @param userDto roles must be set
 	 * @return the updated user
 	 */
 	@RequestMapping(value="/rest/user/{id}/update/roles", method=RequestMethod.PUT)
 	public UserDto updateUserRoles(
 		@PathVariable("id") long id,
-		@RequestParam("password") String password,
 		@RequestBody RolesDto roles)
 	{
 		User user = 
-			userService.updateRoles(id, password, roles.roles);
+			userService.updateRoles(id, roles.roles);
 		return new UserDto(user);
 	}
 	

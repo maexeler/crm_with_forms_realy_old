@@ -91,15 +91,10 @@ public class UserImpl implements User {
 
 	/**
 	 * Update roles
-	 * @param password a valid plain text or password hash
 	 * @param roleNames the new roles
 	 */
-	public boolean updateRoles(String password, String[] roleNames) {
-		if (passwordDoesMatch(password)) {
-			setRoles(roleNames);
-			return true;
-		}
-		return false;
+	public void updateRoles(String[] roleNames) {
+		setRoles(roleNames);
 	}
 	
 	private boolean passwordDoesMatch(String password) {

@@ -12,7 +12,7 @@ public interface UserService {
 	 * @param id the users id
 	 * @return Optional containing the user or null
 	 */
-	User getUserById(long id);
+	User getUserById(long userId);
 
 	/**
 	 * Get an user object by its user name
@@ -31,7 +31,7 @@ public interface UserService {
      * and try to give him all the desired roles
      * @param name user name
      * @param password password as plain text
-     * @param roleName an array of allowed role names
+     * @param roleNames an array of allowed role names
      * @return a new user or null if a user with this name already exist
      */
     User createUser(String name, String password, String... roleNames);
@@ -46,11 +46,10 @@ public interface UserService {
 	/**
 	 * Update a given user
 	 * @param id the user id
-     * @param password password as plain text
-     * @param roleName an array of allowed role manes
+     * @param roleNames an array of allowed role manes
      * @return a the updated user or null if a user with this id does not exist
 	 */
-	User updateRoles(long id, String password, String... roleNames);
+	User updateRoles(long userId, String... roleNames);
 
 	/**
 	 * Change the password for a given user

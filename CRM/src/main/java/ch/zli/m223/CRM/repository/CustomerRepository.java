@@ -17,15 +17,21 @@ public interface CustomerRepository extends JpaRepository<CustomerImpl, Long> {
 	 */
 	default Customer create(String name, String street, String city) {
 		CustomerImpl customer = new CustomerImpl(name, street, city);
-		save(customer);
-		return customer;
+		return save(customer); // Persist changes to data store and return the new customer
 	}
 
+	/**
+	 * Update a given Customer object
+	 * @param name the customers name
+	 * @param street the customers street
+	 * @param city the customers city
+	 * @return the updated customer
+	 */
 	default Customer update(Customer customer, String name, String street, String city) {
 		CustomerImpl customerImpl = (CustomerImpl) customer;
 		customerImpl.setName(name);
 		customerImpl.setStreet(street);
 		customerImpl.setCity(city);
-		return save(customerImpl);
+		return save(customerImpl);  // Persist changes to data store and return the updated customer
 	}
 }

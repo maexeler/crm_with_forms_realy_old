@@ -32,13 +32,10 @@ public interface UserRepository extends JpaRepository<UserImpl, Long> {
 		return save(((UserImpl)user).addRole(role));
 	}
 
-	default User updateRoles(User user, String password, String[] roleNames) {
+	default User updateRoles(User user, String[] roleNames) {
 		UserImpl userImpl = (UserImpl)user;
-		
-		if (userImpl.updateRoles(password, roleNames)) {
-			save(userImpl);
-		}
-		return userImpl;
+		userImpl.updateRoles(roleNames);
+		return save(userImpl);
 	}
 
 	default boolean updatePassword(User user, String oldPassword, String newPassword) {
