@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// This member is used by UserDetailsServiceImpl which is part of the security checking.
-	// We have to grant access to everybody, otherwise it login would not work.
+	// We have to grant access to everybody, otherwise the login would not work.
 	// We may not even use @PermitAll, since the security process is outside of our
 	// permission handling
 	@Override

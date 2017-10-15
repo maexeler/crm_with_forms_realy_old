@@ -16,4 +16,11 @@ public interface User {
 	
 	/** @return the users roles */
 	public Set<String> getRoleNames();
+
+	/**
+	 * Verify a password against the users password
+	 * @param string the password as text
+	 * @return true if password valid, false otherwise
+	 */
+	public boolean verifyPassword(String password);
 }

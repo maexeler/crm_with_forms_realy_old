@@ -33,4 +33,10 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 		memoImpl.setDate(date);
 		return save(memoImpl);
 	}
+
+	default public void deleteMemoFromCustomer(Memo memo) {
+		CustomerImpl customer = (CustomerImpl)memo.getCustomer();
+		customer.removeMemo((MemoImpl)memo);
+		delete(memo.getId());
+	}
 }

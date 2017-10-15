@@ -92,7 +92,10 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteMemo(long memoId) {
-		memorepository.delete(memoId);
+		Memo memo = memorepository.findOne(memoId);
+		if (memo == null) { return; }
+		
+		memorepository.deleteMemoFromCustomer(memo);
 	}
 	
 }
