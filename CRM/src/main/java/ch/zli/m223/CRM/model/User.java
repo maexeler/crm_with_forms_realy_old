@@ -12,7 +12,7 @@ public interface User {
 	public String getUserName();
 	
 	/** @return the password */
-	public String getPassword();
+	public String getPasswordHash();
 	
 	/** @return the users roles */
 	public Set<String> getRoleNames();

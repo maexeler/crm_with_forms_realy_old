@@ -1,6 +1,7 @@
 package ch.zli.m223.CRM.model.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,10 +35,7 @@ public class CustomerImpl implements Customer {
 	private List<MemoImpl> memos;
 
 	/** To be used  by JPA only*/
-	public CustomerImpl() {
-		name = street = city = "";
-		memos = new ArrayList<>();
-	}
+	public CustomerImpl() {}
 	
 	/**
 	 * ctor
@@ -50,6 +48,7 @@ public class CustomerImpl implements Customer {
 		this.name = name;
 		this.street = street;
 		this.city = city;
+		memos = new ArrayList<>();
 	}
 	
 	@Override public Long getId()       { return id; }
@@ -57,7 +56,7 @@ public class CustomerImpl implements Customer {
 	@Override public String getStreet() { return street; }
 	@Override public String getCity()   { return city; }
 	
-	@Override public List<Memo> getMemos() {
+	@Override public Collection<Memo> getMemos() {
 		ArrayList<Memo> res = new ArrayList<Memo>(memos);
 		Collections.sort(res, new Comparator<Memo>() {
 			public int compare(Memo o1, Memo o2) {

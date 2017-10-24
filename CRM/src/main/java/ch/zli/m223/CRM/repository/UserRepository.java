@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import ch.zli.m223.CRM.model.User;
 import ch.zli.m223.CRM.model.impl.UserImpl;
@@ -21,20 +20,13 @@ public interface UserRepository extends JpaRepository<UserImpl, Long> {
 
 	User findByUserName(String userName);
 
-	default User createUser(String userName, String password) {
-		if (findByUserName(userName) != null) { return null; }
-		
-		UserImpl user = new UserImpl(userName, new BCryptPasswordEncoder().encode(password));
-		return save(user);
+	default User createUser(String userName, String password, String[] roleNames) {
+		return save(new UserImpl(userName, password, roleNames));
 	}
 
-	default User addRoleToUser(User user, String role) {
-		return save(((UserImpl)user).addRole(role));
-	}
-
-	default User updateRoles(User user, String[] roleNames) {
+	default User setRoles(User user, String[] roleNames) {
 		UserImpl userImpl = (UserImpl)user;
-		userImpl.updateRoles(roleNames);
+		userImpl.setRoles(roleNames);
 		return save(userImpl);
 	}
 

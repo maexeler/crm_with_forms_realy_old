@@ -1,11 +1,11 @@
-package ch.zli.m223.CRM;
+package ch.zli.m223.CRM.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ public class CustomerServiceTest {
 	private CustomerService customerService;
 
 	@Test public void getCustomerListTest() {
-		List<Customer> customers = customerService.getCustomerList();
+		Collection<Customer> customers = customerService.getCustomerList();
 		assertTrue(customers != null);
 	}
 	
@@ -58,7 +58,7 @@ public class CustomerServiceTest {
 	}
 	
 	@Test public void getMemosTest() {
-		List<Memo> memos = customerService.getMemos(1L);
+		Collection<Memo> memos = customerService.getMemos(1L);
 		assertTrue(memos != null);
 		assertTrue(memos.size() > 0);
 		
@@ -80,8 +80,8 @@ public class CustomerServiceTest {
 	}
 	
 	@Test public void updateMemoTest() {
-		List<Memo> memos = customerService.getMemos(1L);
-		long memoId = memos.get(1).getId();
+		Collection<Memo> memos = customerService.getMemos(1L);
+		long memoId = memos.toArray(new Memo[0])[0].getId();
 		Date date = new Date();
 		customerService.updateMemo(memoId, "gaga", date);
 		Memo memo = customerService.getMemo(memoId);
@@ -92,9 +92,9 @@ public class CustomerServiceTest {
 	}
 
 	@Test public void deleteMemoTest() {
-		List<Memo> memos = customerService.getMemos(1L);
+		Collection<Memo> memos = customerService.getMemos(1L);
 		int sizeBefore = memos.size();
-		customerService.deleteMemo(memos.get(0).getId());
+		customerService.deleteMemo(memos.toArray(new Memo[0])[0].getId());
 		int sizeAfter = customerService.getMemos(1L).size();
 		assertTrue(sizeBefore -1 == sizeAfter);
 		

@@ -1,7 +1,7 @@
 package ch.zli.m223.CRM.service;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.model.Memo;
@@ -13,7 +13,7 @@ public interface CustomerService {
 	// ---------------------------
 	
 	/** @return the list of all customers*/ 
-	List<Customer> getCustomerList();
+	Collection<Customer> getCustomerList();
 	
 	/** 
 	 * @param customerId the customer id
@@ -54,7 +54,7 @@ public interface CustomerService {
 	 * @param customerId the customers id
 	 * @return a (possibly) empty list of memos
 	 */
-	List<Memo> getMemos(long customerId);
+	Collection<Memo> getMemos(long customerId);
 	
 	/**
 	 * Get a memo

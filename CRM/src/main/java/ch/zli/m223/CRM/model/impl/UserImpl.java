@@ -31,77 +31,60 @@ public class UserImpl implements User {
 	private String passwordHash;
 	
 	@ElementCollection(fetch=FetchType.EAGER) // For simple types only, no Role objects allowed
-	private Set<String> roleNames;
+	private Set<String> roles;
 
 	/** To be used by JPA only */
-	public UserImpl() {
-		userName = passwordHash = "";
-		roleNames = new HashSet<>();
-	}
+	protected UserImpl() {}
 	
 	/**
 	 * ctor
 	 * @param userName the users name (must be unique)
 	 * @param passwordHash the users password (should be the passwor hash)
 	 */
-	public UserImpl(String userName, String passwordHash) {
-		this();
+	public UserImpl(String userName, String password, String[] roleNames) {
 		this.userName = userName;
-		this.passwordHash = passwordHash;
+		setPassword(password);
+		setRoles(roleNames);
 	}
 
 	@Override public Long getId() { return id; }
 	@Override public String getUserName() { return userName;     }
-	@Override public String getPassword() { return passwordHash; }
+	@Override public String getPasswordHash() { return passwordHash; }
 
 	@Override
 	public Set<String> getRoleNames() {
-		return Collections.unmodifiableSet(roleNames);
+		return Collections.unmodifiableSet(roles);
 	}
-	
-	/**
-	 * Add another role to the user
-	 * @param role the additional role
-	 */
-	public UserImpl addRole(String role)         { roleNames.add(role); return this; }
-	
+		
 	/**
 	 * Set a new password
 	 * @param oldPassword the old (existing) password
 	 * @param newPassword the new password to be used
 	 * @return true if the password was changed, false otherwise
 	 */
-	public boolean changePassword(String oldPassword, String newPassword) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+	public boolean changePassword(String oldPassword, String newPassword) {		
 		if (verifyPassword(oldPassword)) {
-			passwordHash = encoder.encode(newPassword);
+			setPassword(newPassword);
 			return true;
 		}
 		return false;
 	}
-
-	/**
-	 * Update roles
-	 * @param roleNames the new roles
-	 */
-	public void updateRoles(String[] roleNames) {
-		setRoles(roleNames);
-	}
 	
 	public boolean verifyPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		return passwordHash.equals(password) || 
-				encoder.matches(password, passwordHash);
+		return encoder.matches(password, passwordHash);
 	}
 	
-	private void setRoles(String... roleNames) {
-		this.roleNames = new HashSet<>();
-		for (String role : roleNames) {
-			addRole(role);
-		}
+	public void setRoles(String... roleNames) {
+		this.roles = new HashSet<>();
+		for (String role : roleNames) { this.roles.add(role); }
 	}
 
+	private void setPassword(String password) {
+		BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+		this.passwordHash = bcpe.encode(password);
+	}
+	
 	// Generated code
 	
 	@Override
@@ -131,7 +114,7 @@ public class UserImpl implements User {
 
 	@Override
 	public String toString() {
-		return "UserImpl [id=" + id + ", userName=" + userName + ", roleNames=" + roleNames + "]";
+		return "UserImpl [id=" + id + ", userName=" + userName + ", roleNames=" + roles + "]";
 	}
 	
 	

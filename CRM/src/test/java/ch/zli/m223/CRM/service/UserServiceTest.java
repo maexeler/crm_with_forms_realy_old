@@ -1,10 +1,11 @@
-package ch.zli.m223.CRM;
+package ch.zli.m223.CRM.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ public class UserServiceTest {
 	}
 
 	@Test public void getAllUserTest() {
-		List<User> users = userService.getAllUsers();
+		Collection<User> users = userService.getAllUsers();
 		assertFalse(users == null);
 		assertTrue(users.size() > 0);
 	}
@@ -57,30 +58,36 @@ public class UserServiceTest {
 		int sizeAfter = userService.getAllUsers().size();
 		assertEquals(sizeBefore + 1, sizeMiddle);
 		assertEquals(sizeBefore, sizeAfter);
+		
+		// User does not exist
+		userService.deleteUser(42);
 	}
 
 	@Test public void updateRolesTest() {
 		User user = userService.getUserById(1L);
-		userService.updateRoles(user.getId(), "lazy", "boy");
+		userService.setRoles(user.getId(), "lazy", "boy");
 		user = userService.getUserById(1L);
 		assertTrue(user.getRoleNames().contains("lazy"));
 		assertTrue(user.getRoleNames().contains("boy"));
 		
 		// User does not exist
-		userService.updateRoles(42, "lazy", "boy");
+		userService.setRoles(42, "lazy", "boy");
 	}
 
 	@Test public void updatePasswordTest() {
-		User user = userService.getUserById(1L);
-		String oldPassword = user.getPassword();
-		userService.updatePassword(user.getId(), oldPassword, "gaga");
-		user = userService.getUserById(1L);
+		User user = userService.createUser("metoo", "metoo", "lazy", "boy");
+		userService.updatePassword(user.getId(), "metoo", "gaga");
+		user = userService.getUserById(user.getId());
 		assertTrue(user.verifyPassword("gaga"));
+		
+		// We should have a password hash
+		assertNotNull(user.getPasswordHash());
+		assertFalse(user.getPasswordHash().isEmpty());
 		
 		// Wrong password
 		assertFalse(userService.updatePassword(user.getId(), "42", "gaga"));
 		
 		// User does not exist
-		userService.updatePassword(42, oldPassword, "gaga");
+		userService.updatePassword(42, "metoo", "gaga");
 	}
 }

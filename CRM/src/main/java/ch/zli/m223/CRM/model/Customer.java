@@ -1,6 +1,6 @@
 package ch.zli.m223.CRM.model;
 
-import java.util.List;
+import java.util.Collection;
 
 /** Business object abstraction for a customer */
 public interface Customer {
@@ -18,5 +18,5 @@ public interface Customer {
 	String getCity();
 	
 	/** @return a list of memos sorted by time, descending */
-	List<Memo> getMemos();
+	Collection<Memo> getMemos();
 }

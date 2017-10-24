@@ -1,6 +1,7 @@
 package ch.zli.m223.CRM.rest;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class CustomerRestController {
 	 * @return a (possibly empty) list of customers
 	 */
 	@RequestMapping(value="/rest/customers", method=RequestMethod.GET)
-	public List<CustomerDto> showCustomerList() {
-		List<Customer> customers = customerService.getCustomerList();
+	public Collection<CustomerDto> showCustomerList() {
+		Collection<Customer> customers = customerService.getCustomerList();
 		ArrayList<CustomerDto> res = new ArrayList<CustomerDto>();
 		customers.forEach(customer -> res.add(new CustomerDto(customer)));
 		return res;

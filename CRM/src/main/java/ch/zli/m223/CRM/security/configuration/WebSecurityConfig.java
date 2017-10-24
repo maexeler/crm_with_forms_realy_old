@@ -30,18 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				// Web API
-				.antMatchers("/", "/home", "/public/**").permitAll()
+				.antMatchers("/", "/home/**", "/public/**").permitAll()
 				.antMatchers("/admin/**").hasAnyRole(CrmRoles.ADMIN)
 				.antMatchers("/user/**").hasAnyRole(CrmRoles.USER)
 				.antMatchers("/authenticatedUsers/**").hasAnyRole(CrmRoles.ADMIN, CrmRoles.USER)
 				// Rest API
-				.antMatchers("/rest/**").permitAll() // permit all for easier testing
-/*
-				.antMatchers("/rest/authentication/login", "/rest/authentication/logout").permitAll()
-				.antMatchers("/rest/customer/**").hasAnyRole(CrmRoles.USER)
-				.antMatchers("/rest/admin/**").hasAnyRole(CrmRoles.ADMIN)
-*/
-				
+				.antMatchers("/rest/**").permitAll() // permit all for easier development and testing
+                                                     // don't do this on the production system				
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()
@@ -53,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.and()
 				.exceptionHandling().accessDeniedHandler(accessDeniedHandler)
 			.and()
-			// Disable Cross-Site Request Forgery prevention for easier development 
+			// Disable Cross-Site Request Forgery prevention for easier development
+            // don't do this on the production system
 			.csrf().disable()
 			;
 	}
@@ -75,18 +71,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
-
-/*
-	// TODO: Test only. create 3 users, admin, user and an admin-user
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("user").roles(CrmRoles.CRM_USER)
-                .and()
-                .withUser("admin").password("admin").roles(CrmRoles.ADMIN)
-                .and()
-                .withUser("usmin").password("usmin").roles(CrmRoles.CRM_USER, CrmRoles.ADMIN);
-    }
-*/
 }

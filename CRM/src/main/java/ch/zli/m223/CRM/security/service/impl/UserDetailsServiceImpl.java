@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 		public UserDetailsImpl(User user) {
 			super(
 				user.getUserName(),
-				user.getPassword(), 
+				user.getPasswordHash(), 
 				AuthorityUtils.createAuthorityList(
 					user.getRoleNames().stream().map(role -> SpringRole.ROLE_PREFIX + role).toArray(String[]::new))
 				);

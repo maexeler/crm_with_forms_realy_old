@@ -1,6 +1,6 @@
 package ch.zli.m223.CRM.service;
 
-import java.util.List;
+import java.util.Collection;
 
 import ch.zli.m223.CRM.model.User;
 
@@ -24,7 +24,7 @@ public interface UserService {
     /**
      * @return a (possibly empty) list of users
      */
-    List<User> getAllUsers();
+    Collection<User> getAllUsers();
 
     /**
      * Create a new User</br>
@@ -49,7 +49,7 @@ public interface UserService {
      * @param roleNames an array of allowed role manes
      * @return a the updated user or null if a user with this id does not exist
 	 */
-	User updateRoles(long userId, String... roleNames);
+	User setRoles(long userId, String... roleNames);
 
 	/**
 	 * Change the password for a given user

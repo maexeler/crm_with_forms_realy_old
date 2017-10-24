@@ -1,8 +1,8 @@
 package ch.zli.m223.CRM.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	@PermitAll
-	public List<Customer> getCustomerList() {
+	public Collection<Customer> getCustomerList() {
 		return new ArrayList<Customer>(customerRepository.findAll(new Sort("name")));
 	}
 
@@ -70,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Memo> getMemos(long customerId) {
+	public Collection<Memo> getMemos(long customerId) {
 		Customer customer = customerRepository.findOne(customerId);
 		if (customer == null) { return null; }
 		

@@ -1,7 +1,7 @@
 package ch.zli.m223.CRM.rest;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +27,8 @@ public class UserRestController {
 	 * @return a (possibly empty) list of users
 	 */
 	@RequestMapping(value="/rest/users", method=RequestMethod.GET)
-	public List<UserDto> showUserList() {
-		List<User> users = userService.getAllUsers();
+	public Collection<UserDto> showUserList() {
+		Collection<User> users = userService.getAllUsers();
 		ArrayList<UserDto> res = new ArrayList<UserDto>();
 		users.forEach(user -> res.add(new UserDto(user)));
 		return res;
@@ -70,7 +70,7 @@ public class UserRestController {
 		@RequestBody RolesDto roles)
 	{
 		User user = 
-			userService.updateRoles(id, roles.roles);
+			userService.setRoles(id, roles.roles);
 		return new UserDto(user);
 	}
 	

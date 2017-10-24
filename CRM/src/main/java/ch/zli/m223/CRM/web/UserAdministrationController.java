@@ -69,7 +69,7 @@ public class UserAdministrationController {
 	public String saveModifiedUser(@PathVariable("id") long id,
 		@RequestParam(value="rolenames", defaultValue="") String[] roles)
 	{
-		userService.updateRoles(id, roles);
+		userService.setRoles(id, roles);
 		return "redirect:/admin/showUser/" + id;
 	}
 	

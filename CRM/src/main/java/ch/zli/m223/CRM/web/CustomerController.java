@@ -1,6 +1,6 @@
 package ch.zli.m223.CRM.web;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class CustomerController {
 	
 	@RequestMapping("/home")
 	public String showCustomerList(Model model) {
-		List<Customer> customers = customerService.getCustomerList();
+		Collection<Customer> customers = customerService.getCustomerList();
 		model.addAttribute("customers", customers);
 		return "showCustomerList";
 	}
