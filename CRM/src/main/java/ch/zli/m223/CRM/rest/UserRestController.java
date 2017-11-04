@@ -16,6 +16,10 @@ import ch.zli.m223.CRM.model.dto.RolesDto;
 import ch.zli.m223.CRM.model.dto.UserDto;
 import ch.zli.m223.CRM.service.UserService;
 
+/**
+ * User Rest Controller </br>
+ * maps any user related request and processes them 
+ */
 @RestController
 public class UserRestController {
 

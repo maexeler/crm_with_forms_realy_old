@@ -21,49 +21,67 @@ import ch.zli.m223.CRM.role.CrmRoles;
 import ch.zli.m223.CRM.security.service.impl.UserDetailsServiceImpl;
 
 /**
- * Thats not the way to do it. <p />
- * 
- * It is the simplest way to deal with the security configuration
- * we already use for the Web-Controller. <br />
- * 
- * We would better install a Request filter and add some form of token store
- * for a truly stateless implementation. But that would be a lot of work.
- * May be next time.
+ * Rest authentication controller
+ * <p>
+ * Note: thats not the best way to do it.
+ * <br>
+ * It is only the simplest way to deal with the security configuration
+ * we already use for the Web-Controller.
+ * <br>
+ * We should better install a Request filter and add some form of token store
+ * for a truly state less implementation. <br>But that's lot of work.
+ * May be next time :-)
  */
 @RestController
 public class AuthenticationRestController {
 	
 	@Autowired private AuthenticationManager authenticationManager;
 
+	/** Log in as a user
+	 * <br>
+	 * We can't use the web interface, so let's do it by code.
+	 * 
+	 * @param username the users name
+	 * @param password the users password
+	 */
 	@RequestMapping(value="/rest/v1/authentication/login", method=RequestMethod.POST)
 	public void login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
+		// Create user information
 		UsernamePasswordAuthenticationToken authRequest = 
 				new UsernamePasswordAuthenticationToken(username, password);
 		
-		// This is a kind of a hack: let us inject a BCryptPasswordEncoder
+		// Inject a BCryptPasswordEncoder for the authentication
 		ProviderManager pm = (ProviderManager)authenticationManager;
 		DaoAuthenticationProvider dap = (DaoAuthenticationProvider)pm.getProviders().get(0);
 		dap.setPasswordEncoder(new BCryptPasswordEncoder());
 
+		// Try to authenticate the user
 		Authentication authentication = authenticationManager.authenticate(authRequest);
 		if (authentication.isAuthenticated()) {
+			// if OK, we're in
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		} else {
+			// no one should be authenticated
 			logout();
 		}
 	}
 	
+	/** Log out
+	 * <br> by clearing the security context
+	 */
 	@RequestMapping(value="/rest/v1/authentication/logout", method=RequestMethod.GET)
 	public void logout() {
 		SecurityContextHolder.clearContext();
 	}
 	
+	/** @return all available roles */
 	@RequestMapping(value="/rest/v1/authentication/roles", method=RequestMethod.GET)
 	public RolesDto roles() {
 		return new RolesDto(CrmRoles.ALL_ROLES);
 	}
 	
+	/** @return the credentials for the currently authentication */
 	@RequestMapping(value="/rest/v1/authentication/credentials", method=RequestMethod.GET)
 	public CredentialDto credentials() {
 		String name = "";

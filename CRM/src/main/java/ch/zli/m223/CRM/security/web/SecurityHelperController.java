@@ -12,9 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Define mappings for login, logout and credential errors
+ */
 @Controller
-public class SecurityController {
+public class SecurityHelperController {
 	
+	/** 
+	 * Process loggin mapping
+	 */
 	@GetMapping(value = {"/login/", "/login"})
     public String loginOrOut(@RequestParam Map<String,String> allRequestParams) {
 		if (allRequestParams.containsKey("logout")) {
@@ -23,6 +29,9 @@ public class SecurityController {
         return "security/login";
     }
 	
+	/**
+	 * Process access denied 
+	 */
 	@GetMapping("/403")
     public String error403() {
         return "security/403";

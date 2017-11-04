@@ -19,7 +19,7 @@ public interface User {
 
 	/**
 	 * Verify a password against the users password
-	 * @param string the password as text
+	 * @param password the password as text
 	 * @return true if password valid, false otherwise
 	 */
 	public boolean verifyPassword(String password);

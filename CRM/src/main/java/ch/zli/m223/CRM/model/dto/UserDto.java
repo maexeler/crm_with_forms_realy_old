@@ -4,6 +4,7 @@ import java.util.Set;
 
 import ch.zli.m223.CRM.model.User;
 
+/** @see User */
 public class UserDto {
 
 	public Long id = null;

@@ -2,6 +2,7 @@ package ch.zli.m223.CRM.repository;
 
 import java.util.Date;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.repository.CrudRepository;
 
 import ch.zli.m223.CRM.model.Customer;
@@ -27,6 +28,13 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 		return memo;
 	}
 
+	/**
+	 * Update a gven memo object
+	 * @param memo the memo
+	 * @param memoText its new Text
+	 * @param date its date
+	 * @return the ubdated memo
+	 */
 	default public Memo update(Memo memo, String memoText, Date date) {
 		MemoImpl memoImpl = (MemoImpl)memo;
 		memoImpl.setMemoText(memoText);
@@ -34,9 +42,15 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 		return save(memoImpl);
 	}
 
+	/**
+	 * Delete a memo
+	 * <br>
+	 * No error is thrown if the memo does not exist
+	 * @param memo
+	 */
 	default public void deleteMemoFromCustomer(Memo memo) {
 		CustomerImpl customer = (CustomerImpl)memo.getCustomer();
 		customer.removeMemo((MemoImpl)memo);
-		delete(memo.getId());
+		try {delete(memo.getId());} catch (EmptyResultDataAccessException ignored) {}
 	}
 }

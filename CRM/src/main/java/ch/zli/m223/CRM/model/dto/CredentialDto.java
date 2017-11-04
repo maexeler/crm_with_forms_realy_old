@@ -3,6 +3,7 @@ package ch.zli.m223.CRM.model.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+/** Maps a users credential information */
 public class CredentialDto {
 
 	public String userName;

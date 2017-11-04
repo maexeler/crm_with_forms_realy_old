@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ch.zli.m223.CRM.model.User;
 import ch.zli.m223.CRM.service.UserService;
 
+/**
+ * User Web Controller </br>
+ * maps any user related URLs and processes them 
+ */
 @Controller
 public class UserAdministrationController {
 
@@ -56,7 +60,7 @@ public class UserAdministrationController {
 		// create a new user
 		User user = userService.createUser(name, password, roles);
 		if (user == null) {
-			// Try it again
+			// Show the form again
 			model.addAttribute("error", "userName already exists");
 			model.addAttribute("username", name);
 			model.addAttribute("password", password);
@@ -74,7 +78,7 @@ public class UserAdministrationController {
 	}
 	
 	private static final String CANGE_PWD_URL = "/authenticatedUsers/changePassword/";
-	private static final String SAVE_PWD_URL = "/authenticatedUsers/savePassword/{userId}";
+	private static final String SAVE_PWD_URL  = "/authenticatedUsers/savePassword/{userId}";
 	
 	@RequestMapping(CANGE_PWD_URL + "{userId}")
 	public String changePassword(Model model, @PathVariable("userId") long id) {
@@ -98,11 +102,5 @@ public class UserAdministrationController {
 			return "redirect:" + CANGE_PWD_URL + id + "?errorOldPassword=true";
 		}
 		return "redirect:/";
-	}
-	
-	@RequestMapping("authenticatedUsers/doit")
-	public String doIt() {
-		return "redirect:/";
-		
 	}
 }

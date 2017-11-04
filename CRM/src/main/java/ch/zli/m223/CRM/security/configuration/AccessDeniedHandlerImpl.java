@@ -10,6 +10,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * Form to be shown if a user has the wrong credentials for a job
+ */
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 
@@ -19,7 +22,6 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 			HttpServletResponse httpServletResponse, 
 			AccessDeniedException accessDeniedException) throws IOException, ServletException 
 	{
-		System.out.println("AccessDeniedHandlerImpl" + accessDeniedException.getLocalizedMessage());
 		httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");	
 	}
 

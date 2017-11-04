@@ -29,7 +29,6 @@ public class MemoImpl implements Memo {
 	/** To be used by us and JPA only*/
 	public MemoImpl() {
 		coverage = new Date().getTime();
-		noteText = "";
 	}
 	
 	/**

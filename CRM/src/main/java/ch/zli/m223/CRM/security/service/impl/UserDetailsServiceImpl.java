@@ -13,10 +13,25 @@ import ch.zli.m223.CRM.model.User;
 import ch.zli.m223.CRM.security.SpringRole;
 import ch.zli.m223.CRM.service.UserService;
 
+/**
+ * UserDetailsServiceImpl is the bridge between Spring security and the users in our user data base
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService  {
 
 	@Autowired public UserService userService;
+	
+	/**
+	 * @return a user from our data store in a form understood by spring security
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		User user = userService.getUserByName(userName);
+		if (user == null) {
+			throw new UsernameNotFoundException(String.format("User with userName=%s was not found", userName));
+		}
+        return new UserDetailsImpl(user);
+	}
 	
 	/**
 	 * This is a wrapper around a domain user object 
@@ -39,15 +54,6 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 		}
 		public long        getId()        { return user.getId(); }
 		public Set<String> getRoleNames() { return user.getRoleNames(); }
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userService.getUserByName(userName);
-		if (user == null) {
-			throw new UsernameNotFoundException(String.format("User with userName=%s was not found", userName));
-		}
-        return new UserDetailsImpl(user);
 	}
 
 }

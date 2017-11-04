@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ch.zli.m223.CRM.service.CustomerService;
 
+/**
+ * Example controller to demonstrating a security hole if we have no service level security
+ */
 @Controller
 public class ExampleSecurityRiskController {
 	
