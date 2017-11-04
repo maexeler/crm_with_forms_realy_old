@@ -130,7 +130,7 @@ public class CustomerRestController {
 	/**
 	 * Delete a memo
 	 */
-	@RequestMapping(value="/rest/v1/customer/memo/{id}/delete", method=RequestMethod.DELETE)
+	@RequestMapping(value="/rest/v1/customer/memo/{id}/delete", method=RequestMethod.POST)
 	public void deleteMemo(@PathVariable("id") long memoId) {
 		customerService.deleteMemo(memoId);
 	}

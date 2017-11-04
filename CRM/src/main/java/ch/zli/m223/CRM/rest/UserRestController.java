@@ -41,7 +41,7 @@ public class UserRestController {
 	 * @param userDto the new user
 	 * @return the new User
 	 */
-	@RequestMapping(value="/rest/v1/user/create", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/user/create", method=RequestMethod.POST)
 	public UserDto createUser(@RequestBody UserDto userDto) {
 		User user = 
 			userService.createUser(userDto.userName, userDto.password, userDto.roles.stream().toArray(String[]::new));
