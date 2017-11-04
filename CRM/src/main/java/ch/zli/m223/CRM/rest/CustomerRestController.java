@@ -32,7 +32,7 @@ public class CustomerRestController {
 	 * Get all customers
 	 * @return a (possibly empty) list of customers
 	 */
-	@RequestMapping(value="/rest/customers", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/customers", method=RequestMethod.GET)
 	public Collection<CustomerDto> showCustomerList() {
 		Collection<Customer> customers = customerService.getCustomerList();
 		ArrayList<CustomerDto> res = new ArrayList<CustomerDto>();
@@ -47,7 +47,7 @@ public class CustomerRestController {
 	 * @param customerDto the new customer
 	 * @return the new Customer
 	 */
-	@RequestMapping(value="/rest/customer/create", method=RequestMethod.POST)
+	@RequestMapping(value="/rest/v1/customer/create", method=RequestMethod.POST)
 	public CustomerDto createCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.addCustomer(customerDto.name, customerDto.street, customerDto.city);
@@ -59,7 +59,7 @@ public class CustomerRestController {
 	 * @param customerId the customers id
 	 * @return a customer or null if not found
 	 */
-	@RequestMapping(value="/rest/customer/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/customer/{id}", method=RequestMethod.GET)
 	public CustomerDto showCustomer(@PathVariable("id") long customerId) {
 		Customer customer = customerService.getCustomer(customerId);
 		return new CustomerDto(customer);
@@ -70,7 +70,7 @@ public class CustomerRestController {
 	 * @param customerDto the changed customer
 	 * @return the updated customer
 	 */
-	@RequestMapping(value="/rest/customer/update", method=RequestMethod.POST)
+	@RequestMapping(value="/rest/v1/customer/update", method=RequestMethod.POST)
 	public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
 		Customer customer = 
 			customerService.updateCustomer(customerDto.id, customerDto.name, customerDto.street, customerDto.city);
@@ -81,7 +81,7 @@ public class CustomerRestController {
 	 * Delete an individual customer
 	 * @param customerId the customers id
 	 */
-	@RequestMapping(value="/rest/customer/{id}/delete", method=RequestMethod.DELETE)
+	@RequestMapping(value="/rest/v1/customer/{id}/delete", method=RequestMethod.POST)
 	public void deleteCustomer(@PathVariable("id") long customerId) {
 		customerService.deleteCustomer(customerId);
 	}
@@ -91,7 +91,7 @@ public class CustomerRestController {
 	/**
 	 * Get all memos for a given customer
 	 */
-	@RequestMapping(value="/rest/customer/{id}/memos", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/customer/{id}/memos", method=RequestMethod.GET)
 	public List<MemoDto> getMemos(@PathVariable("id") long customerId) {
 		Customer customer = customerService.getCustomer(customerId);
 		List<MemoDto> res = new ArrayList<>();
@@ -102,7 +102,7 @@ public class CustomerRestController {
 	/**
 	 * Create a new memo
 	 */
-	@RequestMapping(value="/rest/customer/{id}/memo/create", method=RequestMethod.POST)
+	@RequestMapping(value="/rest/v1/customer/{id}/memo/create", method=RequestMethod.POST)
 	public MemoDto createMemo(@PathVariable("id") long customerId, @RequestBody MemoDto memoDto) {
 		Memo memo = customerService.addMemoToCustomer(customerId, memoDto.noteText);
 		return new MemoDto(memo);
@@ -111,7 +111,7 @@ public class CustomerRestController {
 	/**
 	 * Get a memo
 	 */
-	@RequestMapping(value="/rest/customer/memo/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/customer/memo/{id}", method=RequestMethod.GET)
 	public MemoDto getMemo(@PathVariable("id") long memoId) {
 		Memo memo = customerService.getMemo(memoId);
 		return new MemoDto(memo);
@@ -120,7 +120,7 @@ public class CustomerRestController {
 	/**
 	 * Update a memo
 	 */
-	@RequestMapping(value="/rest/customer/memo/update", method=RequestMethod.POST)
+	@RequestMapping(value="/rest/v1/customer/memo/update", method=RequestMethod.POST)
 	public MemoDto updateMemo(@RequestBody MemoDto memoDto) {
 		Memo memo = customerService.updateMemo(memoDto.id, memoDto.noteText, 
 				memoDto.getCoverage()==null ? new Date() : new Date(memoDto.getCoverage()));
@@ -130,7 +130,7 @@ public class CustomerRestController {
 	/**
 	 * Delete a memo
 	 */
-	@RequestMapping(value="/rest/customer/memo/{id}/delete", method=RequestMethod.DELETE)
+	@RequestMapping(value="/rest/v1/customer/memo/{id}/delete", method=RequestMethod.DELETE)
 	public void deleteMemo(@PathVariable("id") long memoId) {
 		customerService.deleteMemo(memoId);
 	}

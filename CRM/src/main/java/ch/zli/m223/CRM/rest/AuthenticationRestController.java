@@ -35,7 +35,7 @@ public class AuthenticationRestController {
 	
 	@Autowired private AuthenticationManager authenticationManager;
 
-	@RequestMapping(value="/rest/authentication/login") // TODO : PUT only, method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/authentication/login", method=RequestMethod.POST)
 	public void login(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
 		UsernamePasswordAuthenticationToken authRequest = 
@@ -54,17 +54,17 @@ public class AuthenticationRestController {
 		}
 	}
 	
-	@RequestMapping(value="/rest/authentication/logout", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/authentication/logout", method=RequestMethod.GET)
 	public void logout() {
 		SecurityContextHolder.clearContext();
 	}
 	
-	@RequestMapping(value="/rest/authentication/roles", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/authentication/roles", method=RequestMethod.GET)
 	public RolesDto roles() {
 		return new RolesDto(CrmRoles.ALL_ROLES);
 	}
 	
-	@RequestMapping(value="/rest/authentication/credentials", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/authentication/credentials", method=RequestMethod.GET)
 	public CredentialDto credentials() {
 		String name = "";
 		Set<String> roles = null;

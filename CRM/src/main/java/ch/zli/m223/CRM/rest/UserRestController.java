@@ -26,7 +26,7 @@ public class UserRestController {
 	 * Get all users
 	 * @return a (possibly empty) list of users
 	 */
-	@RequestMapping(value="/rest/users", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/users", method=RequestMethod.GET)
 	public Collection<UserDto> showUserList() {
 		Collection<User> users = userService.getAllUsers();
 		ArrayList<UserDto> res = new ArrayList<UserDto>();
@@ -41,7 +41,7 @@ public class UserRestController {
 	 * @param userDto the new user
 	 * @return the new User
 	 */
-	@RequestMapping(value="/rest/user/create", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/user/create", method=RequestMethod.PUT)
 	public UserDto createUser(@RequestBody UserDto userDto) {
 		User user = 
 			userService.createUser(userDto.userName, userDto.password, userDto.roles.stream().toArray(String[]::new));
@@ -53,7 +53,7 @@ public class UserRestController {
 	 * @param id the users id
 	 * @return a user or null if not found
 	 */
-	@RequestMapping(value="/rest/user/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/v1/user/{id}", method=RequestMethod.GET)
 	public UserDto showUser(@PathVariable("id") long id) {
 		User user = userService.getUserById(id);
 		return new UserDto(user);
@@ -64,7 +64,7 @@ public class UserRestController {
 	 * @param userDto roles must be set
 	 * @return the updated user
 	 */
-	@RequestMapping(value="/rest/user/{id}/update/roles", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/user/{id}/update/roles", method=RequestMethod.POST)
 	public UserDto updateUserRoles(
 		@PathVariable("id") long id,
 		@RequestBody RolesDto roles)
@@ -80,7 +80,7 @@ public class UserRestController {
 	 * @param newPassword new password as plain text
 	 * @return the updated user
 	 */
-	@RequestMapping(value="/rest/user/{id}/update/password", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/user/{id}/update/password", method=RequestMethod.POST)
 	public boolean updateUserPassword(
 		@PathVariable("id") long id, 
 		@RequestParam("oldPassword") String oldPassword,
@@ -93,7 +93,7 @@ public class UserRestController {
 	 * Delete an individual user
 	 * @param userId the users id
 	 */
-	@RequestMapping(value="/rest/user/{id}/delete", method=RequestMethod.PUT)
+	@RequestMapping(value="/rest/v1/user/{id}/delete", method=RequestMethod.POST)
 	public void deleteUser(@PathVariable("id") long userId) {
 		userService.deleteUser(userId);
 	}

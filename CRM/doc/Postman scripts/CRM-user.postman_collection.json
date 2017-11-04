@@ -25,7 +25,7 @@
 			"name": "Create a new user",
 			"request": {
 				"url": "localhost:8081/rest/user/create",
-				"method": "PUT",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -101,7 +101,7 @@
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -154,7 +154,7 @@
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {},
 				"description": ""
@@ -188,7 +188,7 @@
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",

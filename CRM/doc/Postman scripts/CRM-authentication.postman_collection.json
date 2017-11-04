@@ -51,7 +51,7 @@
 					],
 					"variable": []
 				},
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",

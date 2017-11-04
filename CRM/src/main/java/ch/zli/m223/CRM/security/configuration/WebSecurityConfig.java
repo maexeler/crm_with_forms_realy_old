@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user/**").hasAnyRole(CrmRoles.USER)
 				.antMatchers("/authenticatedUsers/**").hasAnyRole(CrmRoles.ADMIN, CrmRoles.USER)
 				// Rest API
-				.antMatchers("/rest/**").permitAll() // permit all for easier development and testing
+				.antMatchers("/rest/v1/**").permitAll() // permit all for easier development and testing
                                                      // don't do this on the production system				
 				.anyRequest().authenticated()
 			.and()
