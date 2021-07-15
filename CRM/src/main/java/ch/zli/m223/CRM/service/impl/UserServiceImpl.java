@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@RolesAllowed({CrmRoles.ADMIN, CrmRoles.USER})
 	public User getUserById(long userId) {
-		return userRepository.findOne(userId);
+		return userRepository.findById(userId).orElse(null);
 	}
 
 	// This member is used by UserDetailsServiceImpl which is part of the security checking.
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@RolesAllowed(CrmRoles.ADMIN)
 	public Collection<User> getAllUsers() {
-		return userRepository.findAllUser(new Sort("userName"));
+		return userRepository.findAllUser(Sort.by("userName"));
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@RolesAllowed(CrmRoles.ADMIN)
 	public void deleteUser(long userId) {
-		try { userRepository.delete(userId); }
+		try { userRepository.deleteById(userId); }
 		catch(EmptyResultDataAccessException ignored) {}
 	}
 
 	@Override
 	@RolesAllowed(CrmRoles.ADMIN)
 	public User setRoles(long userId, String... roleNames) {
-		User user = userRepository.findOne(userId);
+		User user = userRepository.findById(userId).orElse(null);
 		if (user == null) { return null; }
 		
 		return userRepository.setRoles(user, roleNames);
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@RolesAllowed({CrmRoles.ADMIN, CrmRoles.USER})
 	public boolean updatePassword(long userId, String oldPassword, String newPassword) {
-		User user = userRepository.findOne(userId);
+		User user = userRepository.findById(userId).orElse(null);
 		if (user == null) { return false; }
 				
 		return userRepository.updatePassword(user, oldPassword, newPassword);

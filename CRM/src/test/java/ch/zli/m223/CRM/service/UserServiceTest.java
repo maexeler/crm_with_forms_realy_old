@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import ch.zli.m223.CRM.model.User;
-import ch.zli.m223.CRM.service.UserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -71,7 +70,8 @@ public class UserServiceTest {
 		assertTrue(user.getRoleNames().contains("boy"));
 		
 		// User does not exist
-		userService.setRoles(42, "lazy", "boy");
+		user = userService.setRoles(42, "lazy", "boy");
+		assertEquals(null, user);
 	}
 
 	@Test public void updatePasswordTest() {

@@ -1,8 +1,10 @@
 package ch.zli.m223.CRM.security.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -47,13 +49,18 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 			super(
 				user.getUserName(),
 				user.getPasswordHash(), 
-				AuthorityUtils.createAuthorityList(
-					user.getRoleNames().stream().map(role -> SpringRole.ROLE_PREFIX + role).toArray(String[]::new))
-				);
+				createAuthorityList(user));
 			this.user = user;
 		}
 		public long        getId()        { return user.getId(); }
 		public Set<String> getRoleNames() { return user.getRoleNames(); }
+		
+		
+		private static List<GrantedAuthority> createAuthorityList(User user) {
+			return AuthorityUtils.createAuthorityList(
+					user.getRoleNames().stream()
+					.map(role -> SpringRole.ROLE_PREFIX + role).toArray(String[]::new));
+		}
 	}
 
 }

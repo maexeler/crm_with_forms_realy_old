@@ -29,13 +29,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@PermitAll
 	public Collection<Customer> getCustomerList() {
-		return new ArrayList<Customer>(customerRepository.findAll(new Sort("name")));
+		return new ArrayList<Customer>(customerRepository.findAll(Sort.by("name")));
 	}
 
 	@Override
 	@RolesAllowed(CrmRoles.USER)
 	public Customer getCustomer(long customerId) {
-		return customerRepository.findOne(customerId);
+		return customerRepository.findById(customerId).orElse(null);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@RolesAllowed(CrmRoles.USER)
 	public Memo addMemoToCustomer(long customerId, String memoText) {
-		Customer customer = customerRepository.findOne(customerId);
+		Customer customer = customerRepository.findById(customerId).orElse(null);
 		if (customer == null) { return null; }
 		
 		return memorepository.addMemo((CustomerImpl)customer, memoText);
@@ -58,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public Customer updateCustomer(Long customerId, String name, String street, String city) {
-		Customer customer = customerRepository.findOne(customerId);
+		Customer customer = customerRepository.findById(customerId).orElse(null);
 		if (customer == null) { return null; }
 		
 		return customerRepository.update(customer, name, street, city);
@@ -66,12 +66,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteCustomer(long customerId) {
-		customerRepository.delete(customerId);
+		customerRepository.deleteById(customerId);
 	}
 
 	@Override
 	public Collection<Memo> getMemos(long customerId) {
-		Customer customer = customerRepository.findOne(customerId);
+		Customer customer = customerRepository.findById(customerId).orElse(null);
 		if (customer == null) { return null; }
 		
 		return customer.getMemos();
@@ -79,12 +79,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Memo getMemo(long memoId) {
-		return memorepository.findOne(memoId);
+		return memorepository.findById(memoId).orElse(null);
 	}
 
 	@Override
 	public Memo updateMemo(Long memoId, String memoText, Date date) {
-		Memo memo = memorepository.findOne(memoId);
+		Memo memo = memorepository.findById(memoId).orElse(null);
 		if (memo == null) { return null; }
 		
 		return memorepository.update(memo, memoText, date);
@@ -92,7 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteMemo(long memoId) {
-		Memo memo = memorepository.findOne(memoId);
+		Memo memo = memorepository.findById(memoId).orElse(null);
 		if (memo == null) { return; }
 		
 		memorepository.deleteMemoFromCustomer(memo);

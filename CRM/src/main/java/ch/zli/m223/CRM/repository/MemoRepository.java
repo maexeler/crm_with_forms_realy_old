@@ -29,11 +29,11 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 	}
 
 	/**
-	 * Update a gven memo object
+	 * Update a given memo object
 	 * @param memo the memo
 	 * @param memoText its new Text
 	 * @param date its date
-	 * @return the ubdated memo
+	 * @return the updated memo
 	 */
 	default public Memo update(Memo memo, String memoText, Date date) {
 		MemoImpl memoImpl = (MemoImpl)memo;
@@ -51,6 +51,6 @@ public interface MemoRepository extends CrudRepository<MemoImpl, Long> {
 	default public void deleteMemoFromCustomer(Memo memo) {
 		CustomerImpl customer = (CustomerImpl)memo.getCustomer();
 		customer.removeMemo((MemoImpl)memo);
-		try {delete(memo.getId());} catch (EmptyResultDataAccessException ignored) {}
+		try {deleteById(memo.getId());} catch (EmptyResultDataAccessException ignored) {}
 	}
 }

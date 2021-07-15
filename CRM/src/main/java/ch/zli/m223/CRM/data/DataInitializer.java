@@ -3,7 +3,7 @@ package ch.zli.m223.CRM.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class DataInitializer implements ApplicationRunner {
 	@Autowired UserService userService;
 	@Autowired CustomerService customerService;
 	
-	@Autowired AuthenticationManager authenticationManager;
+//	@Autowired AuthenticationManager authenticationManager;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {

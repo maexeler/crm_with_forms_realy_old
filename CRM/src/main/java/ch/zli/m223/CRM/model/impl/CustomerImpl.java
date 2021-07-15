@@ -31,7 +31,10 @@ public class CustomerImpl implements Customer {
 	// Two directional mapping
 	// Each customer owns its memos
 	// Deleting a customer deletes its memos too.
-	@OneToMany(mappedBy="customer", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(
+			mappedBy="customer",
+			fetch=FetchType.EAGER,
+			cascade = CascadeType.REMOVE)
 	private List<MemoImpl> memos;
 
 	/** To be used  by JPA only*/

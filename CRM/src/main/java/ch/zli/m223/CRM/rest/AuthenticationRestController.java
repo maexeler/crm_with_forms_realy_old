@@ -2,14 +2,7 @@ package ch.zli.m223.CRM.rest;
 
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +28,7 @@ import ch.zli.m223.CRM.security.service.impl.UserDetailsServiceImpl;
 @RestController
 public class AuthenticationRestController {
 	
-	@Autowired private AuthenticationManager authenticationManager;
+//	@Autowired private AuthenticationManager authenticationManager;
 
 	/** Log in as a user
 	 * <br>
@@ -46,7 +39,7 @@ public class AuthenticationRestController {
 	 */
 	@RequestMapping(value="/rest/v1/authentication/login", method=RequestMethod.POST)
 	public void login(@RequestParam("username") String username, @RequestParam("password") String password) {
-		
+/*		
 		// Create user information
 		UsernamePasswordAuthenticationToken authRequest = 
 				new UsernamePasswordAuthenticationToken(username, password);
@@ -65,6 +58,7 @@ public class AuthenticationRestController {
 			// no one should be authenticated
 			logout();
 		}
+*/		
 	}
 	
 	/** Log out

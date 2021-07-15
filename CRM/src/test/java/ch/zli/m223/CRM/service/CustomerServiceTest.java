@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ch.zli.m223.CRM.model.Customer;
 import ch.zli.m223.CRM.model.Memo;
-import ch.zli.m223.CRM.service.CustomerService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
